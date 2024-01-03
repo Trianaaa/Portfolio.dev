@@ -1,0 +1,89 @@
+---
+import Badge from "../components/Badge.astro";
+import Layout from "../layouts/Layout.astro";
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import SocialPill from "../components/SocialPill.astro";
+import GitHubIcon from "../components/icons/GitHub.astro";
+import InstagramIcon from "../components/icons/Instagram.astro";
+import MailIcon from "../components/icons/Mail.astro";
+import Experience from "../components/Experience.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import CaseIcon from "../components/icons/Case.astro";
+import CodeIcon from "../components/icons/Code.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout
+  title="Portfolio de Pablo Triana - Desarrollador y Programador Web"
+  description="Contrata a Pablo Triana para crear tu aplicacion web."
+>
+  <main class="px-4">
+    <SectionContainer class="py-44 pb-32">
+      <img
+        class="rounded-full size-12 mb-4"
+        src="IMG_3513.jpeg"
+        alt="Pablo Photo"
+      />
+      <h1 class="text-gray-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
+        Hey, soy Pablo Triana
+        <a
+          href="https://www.linkedin.com/in/trianaaa/"
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center"
+        >
+          <Badge>Disponible para trabajar</Badge>
+        </a>
+      </h1>
+      <h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white font-semibold">
+        <span>+6 meses de experiencia.</span>
+		<span class="text-yellow-800 dark:text-yellow-200"
+          > Desarrollador Web</span
+        ><span> y</span>
+        <span class="text-[#2e7d32]"
+          >Estudiante de Ingenieria de Sistemas en la Universidad Central.
+        </span>
+        <span class="text-[#00bcd4]">De Bogotá, Colombia 🌎.</span><span
+          class="opacity-75"
+          > Soy entusiasta de la tecnologia y me especializo en crear
+          aplicaciones unicas.</span
+        >
+      </h2>
+
+      <nav class="flex gap-5 mt-8 flex-wrap">
+        <SocialPill href="https://www.linkedin.com/in/trianaaa/">
+          <LinkedInIcon class="size-5 md:size-6" />
+           LinkedIn
+        </SocialPill>
+        <SocialPill href="https://github.com/Trianaaa">
+          <GitHubIcon class="size-5 md:size-6" />
+           GitHub
+        </SocialPill>
+        <SocialPill href="https://www.instagram.com/elcakas._/">
+          <InstagramIcon class="size-5 md:size-6" />
+           Instagram
+        </SocialPill>
+        <SocialPill href="mailto:pabloandrestrianam@gmail.com">
+          <MailIcon class="size-5 md:size-6" />
+           pabloandrestrianam@gmail.com
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+
+    <SectionContainer id="experiencia" class="pb-24">
+		<h2 class="text-3xl font-bold mb-6 flex gap-x-3 items-center">
+			<CaseIcon class="size-7" />
+			Experiencia
+		</h2>
+      <Experience />
+    </SectionContainer>
+
+	<SectionContainer id="proyectos" class="pb-24">
+		<h2 class="text-3xl font-bold mb-6 flex gap-x-3 items-center">
+			<CodeIcon class="size-7" />
+			Proyectos
+		</h2>
+		<Projects />
+	</SectionContainer>
+  </main>
+</Layout>

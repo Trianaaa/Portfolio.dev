@@ -1,0 +1,69 @@
+---
+import htmlIcon from "../components/icons/html.astro";
+import TailwindIcon from "../components/icons/Tailwind.astro";
+import CSSIcon from "../components/icons/CSS.astro";
+import AstroIcon from "../components/icons/Astro.astro";
+import JavaScriptIcon from "../components/icons/JavaScript.astro";
+
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-[#ef6c00] text-white font-bold",
+    icon: htmlIcon,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white font-bold",
+    icon: TailwindIcon,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-[#003159] text-white font-bold",
+    icon: CSSIcon,
+  },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#ef6c00] text-white font-bold",
+    icon: AstroIcon,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-[#fdd835] text-black font-bold",
+    icon: JavaScriptIcon,
+  },
+};
+const PROJECTS = [
+  {
+    title: "Landing de Tesla",
+    description: "Landing de de la pagina de los carros automaticos tesla",
+    link: "https://landing-tesla-one.vercel.app",
+    github: "https://github.com/Trianaaa/landing-_Tesla",
+    image: "teslapage.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.ASTRO, TAGS.TAILWIND, TAGS.JAVASCRIPT]    ,
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, description, tags, image }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-[#009688] mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-4">
+        {tags.map((tag) => (
+            <li>
+                <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                <tag.icon class="size-4"/>
+                {tag.name}
+                </span>
+            </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10s"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${image}`}
+      />
+    </article>
+  ))
+}
