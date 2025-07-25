@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string
+  institution: string
+  description?: string
+  link?: string
+  date: string
+}
+
+const { title, institution, description, link, date } = Astro.props
+---
+
+<div class="relative pl-6">
+  <div class="absolute w-3 h-3 rounded-full top-1.5 left-0 border border-indigo-500 bg-indigo-400 dark:bg-indigo-500"></div>
+
+  <time class="block text-sm font-medium text-indigo-600 dark:text-indigo-400">{date}</time>
+
+  <h3 class="text-lg font-semibold text-indigo-800 dark:text-indigo-200 mt-1">{title}</h3>
+
+  <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mt-0.5">{institution}</p>
+
+  {description && (
+    <p class="mt-1 mb-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed text-pretty">
+      {description}
+    </p>
+  )}
+
+  {link && (
+    <a
+      href={link}
+      target="_blank"
+      class="inline-flex items-center gap-1 text-sm font-medium text-indigo-700 dark:text-indigo-300 hover:underline hover:scale-105 transition"
+    >
+      Ver más
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 5h12M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  )}
+</div>

@@ -1,0 +1,54 @@
+---
+const technologies = [
+  { name: "HTML", icon: "/tech/html.svg" },
+  { name: "CSS", icon: "/tech/css.svg" },
+  { name: "JavaScript", icon: "/tech/javascript.svg" },
+  { name: "TypeScript", icon: "/tech/typescript.svg" },
+  { name: "React", icon: "/tech/react.svg" },
+  { name: "Node.js", icon: "/tech/node.svg" },
+  { name: "Python", icon: "/tech/python.svg" },
+  { name: "Git", icon: "/tech/git.svg" },
+  { name: "MongoDB", icon: "/tech/mongodb.svg" },
+];
+const duplicated = [...technologies, ...technologies];
+---
+
+<div class="overflow-hidden py-10 bg-transparent">
+  <div class="flex gap-10 animate-marquee w-max">
+    {duplicated.map((tech, index) => (
+      <div
+        key={index}
+        class="group flex flex-col items-center min-w-[100px] transition-transform duration-500 ease-in-out hover:rotate-y hover:scale-110"
+      >
+        <div class="tech-card transform-style">
+          <img src={tech.icon} alt={tech.name} class="h-16 w-16 object-contain" loading="lazy" />
+          <span class="mt-2 text-sm text-gray-700 dark:text-gray-200">{tech.name}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+/* Estilo para animación 3D */
+.tech-card {
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+.group:hover .tech-card {
+  transform: perspective(1000px) rotateY(15deg) scale(1.1);
+}
+</style>

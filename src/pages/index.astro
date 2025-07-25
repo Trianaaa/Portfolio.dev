@@ -1,89 +1,126 @@
 ---
-import Badge from "../components/Badge.astro";
 import Layout from "../layouts/Layout.astro";
-import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Badge from "../components/Badge.astro";
 import SocialPill from "../components/SocialPill.astro";
+import TecnologiasCarousel from "../components/TecnologiasCarousel.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+
+// Íconos
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
 import GitHubIcon from "../components/icons/GitHub.astro";
 import InstagramIcon from "../components/icons/Instagram.astro";
 import MailIcon from "../components/icons/Mail.astro";
-import Experience from "../components/Experience.astro";
-import SectionContainer from "../components/SectionContainer.astro";
-import CaseIcon from "../components/icons/Case.astro";
 import CodeIcon from "../components/icons/Code.astro";
-import Projects from "../components/Projects.astro";
+import CaseIcon from "../components/icons/Case.astro";
+import BookIcon from "../components/icons/Book.astro";
 ---
 
 <Layout
-  title="Portfolio de Pablo Triana - Desarrollador y Programador Web"
-  description="Contrata a Pablo Triana para crear tu aplicacion web."
+  title="Portfolio de Pablo Triana - Desarrollador Web e Ingeniero de Sistemas"
+  description="Portafolio profesional de Pablo Triana. Experto en desarrollo web, soporte IT y soluciones tecnológicas. ¡Conóceme!"
 >
   <main class="px-4">
     <SectionContainer id="sobre-mi" class="py-44 pb-32">
-      <img
-        class="rounded-full size-12 mb-4"
+      <div class="flex gap-4 mb-4">
+        <img
+        class="rounded-full shadow-lg size-16"
         src="IMG_3513.jpeg"
         alt="Pablo Photo"
       />
-      <h1 class="text-gray-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
-        Hey, soy Pablo Triana
         <a
           href="https://www.linkedin.com/in/trianaaa/"
           target="_blank"
           rel="noopener"
-          class="flex justify-center items-center"
+          class="flex items-center transition md:justify-center md:hover:scale-105"
         >
           <Badge>Disponible para trabajar</Badge>
         </a>
+      </div>
+      
+      <h1
+        class="text-gray-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+      >
+        Hey, soy Pablo Triana
+        
       </h1>
-      <h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white font-semibold">
-        <span>+6 meses de experiencia.</span>
-		<span class="text-yellow-800 dark:text-yellow-200"
-          > Desarrollador Web</span
-        ><span> y</span>
-        <span class="text-[#2e7d32]"
-          >Estudiante de Ingenieria de Sistemas en la Universidad Central.
-        </span>
-        <span class="text-[#00bcd4]">De Bogotá, Colombia 🌎.</span><span
-          class="opacity-75"
-          > Soy entusiasta de la tecnologia y me especializo en crear
-          aplicaciones unicas.</span
+
+      <h2
+        class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white font-semibold"
+      >
+        <span
+          >+3 años de experiencia en soporte IT y desarrollo de software.</span
+        >
+        <span class="text-yellow-800 dark:text-yellow-200">
+          Desarrollador Web</span
+        >
+        <span> e</span>
+        <span class="text-[#2e7d32]">
+          Ingeniero de Sistemas por la Universidad Central</span
+        >
+        <span class="text-[#00bcd4]"> de Bogotá, Colombia 🌎.</span>
+        <span class="opacity-75">
+          Apasionado por la tecnología y la creación de aplicaciones únicas.</span
         >
       </h2>
 
+      <!-- 🔗 Redes sociales -->
       <nav class="flex gap-5 mt-8 flex-wrap">
         <SocialPill href="https://www.linkedin.com/in/trianaaa/">
           <LinkedInIcon class="size-5 md:size-6" />
-           LinkedIn
+          LinkedIn
         </SocialPill>
         <SocialPill href="https://github.com/Trianaaa">
           <GitHubIcon class="size-5 md:size-6" />
-           GitHub
+          GitHub
         </SocialPill>
-        <SocialPill href="https://www.instagram.com/elcakas._/">
+        <SocialPill href="https://www.instagram.com/pablixx._x/">
           <InstagramIcon class="size-5 md:size-6" />
-           Instagram
+          Instagram
         </SocialPill>
-        <SocialPill href="mailto:pabloandrestrianam@gmail.com">
+        <SocialPill href="mailto:pabloandrestrianam@outlook.com">
           <MailIcon class="size-5 md:size-6" />
-           pabloandrestrianam@gmail.com
+          Contacto
         </SocialPill>
       </nav>
     </SectionContainer>
 
+    <!-- 🚀 Proyectos -->
+    <SectionContainer id="proyectos" class="pb-24">
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
+        <CodeIcon class="size-7" />
+        Proyectos
+      </h2>
+      <Projects />
+    </SectionContainer>
+
+    <!-- 🎓 Educación -->
+    <SectionContainer id="educacion" class="pb-24">
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
+        <BookIcon class="size-7" />
+        Educación
+      </h2>
+      <Education />
+    </SectionContainer>
+
+    <!-- 🧑‍💼 Experiencia -->
     <SectionContainer id="experiencia" class="pb-24">
-		<h2 class="text-3xl font-bold mb-6 flex gap-x-3 items-center">
-			<CaseIcon class="size-7" />
-			Experiencia
-		</h2>
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
+        <CaseIcon class="size-7" />
+        Experiencia
+      </h2>
       <Experience />
     </SectionContainer>
 
-	<SectionContainer id="proyectos" class="pb-24">
-		<h2 class="text-3xl font-bold mb-6 flex gap-x-3 items-center">
-			<CodeIcon class="size-7" />
-			Proyectos
-		</h2>
-		<Projects />
-	</SectionContainer>
+    <!-- 💻 Tecnologías -->
+    <SectionContainer id="tecnologias" class="pb-24">
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
+        <CodeIcon class="size-7" />
+        Tecnologías
+      </h2>
+      <TecnologiasCarousel />
+    </SectionContainer>
   </main>
 </Layout>

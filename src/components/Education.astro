@@ -1,0 +1,32 @@
+---
+import EducationItem from "./EducationItem.astro";
+
+const EDUCATION = [
+  {
+    date: "2025 - Actualmente / En curso",
+    title: "Inglés",
+    institution: "Academia de Idiomas SMART - Bogotá, Colombia",
+    description:
+      "Curso intensivo de inglés enfocado en habilidades comunicativas, comprensión auditiva y expresión oral, con énfasis en contextos académicos y profesionales.",
+    link: "https://smart.edu.co/home/",
+  },
+  {
+    date: "2020 - 2025 / Finalizada",
+    title: "Ingeniería de Sistemas",
+    institution: "Universidad Central - Bogotá, Colombia",
+    description:
+      "Carrera enfocada en desarrollo de software, redes y gestión de proyectos TI. Participación en proyectos interdisciplinarios de tecnología y sostenibilidad.",
+    link: "https://www.ucentral.edu.co/",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3">
+  {
+    EDUCATION.map((item) => (
+      <li class="mb-10 ms-4">
+        <EducationItem {...item} />
+      </li>
+    ))
+  }
+</ol>
