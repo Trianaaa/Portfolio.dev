@@ -2,23 +2,23 @@
 import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
-  { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
-  { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
-  { title: "Educación", label: "educacion", url: "/#educacion" },
-  { title: "Experiencia", label: "experiencia", url: "/#experiencia" },
-  { title: "Tecnologías", label: "tecnologias", url: "/#tecnologias" },
-  { title: "Currículum", label: "curriculum", url: "/#curriculum" },
+  { title: "About Me", label: "about-me", url: "/#about-me" },
+  { title: "Projects", label: "projects", url: "/#projects" },
+  { title: "Education", label: "education", url: "/#education" },
+  { title: "Experience", label: "experience", url: "/#experience" },
+  { title: "Technologies", label: "technologies", url: "/#technologies" },
+  { title: "Resume", label: "resume", url: "/#resume" },
 ];
 ---
 <header class="fixed top-0 z-20 w-full flex justify-center px-4 py-2">
   <div
     class="flex items-center justify-between w-full max-w-5xl px-4 py-2 rounded-full dark:bg-gray-800/90 bg-white/60 backdrop-blur-md shadow-lg ring-1 ring-white/10"
   >
-    <!-- 🔘 Botón hamburguesa a la izquierda -->
+    <!-- 🔘 Hamburger button on the left -->
     <button
       id="menu-toggle"
       class="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      aria-label="Abrir menú"
+      aria-label="Open menu"
     >
       <svg
         class="w-6 h-6 text-gray-700 dark:text-gray-200"
@@ -31,7 +31,7 @@ const navItems = [
       </svg>
     </button>
 
-    <!-- 🌐 Navegación principal -->
+    <!-- 🌐 Main navigation -->
     <nav id="main-nav" class="hidden lg:flex gap-x-4 items-center mx-auto">
       {navItems.map((link) => (
         <a
@@ -46,7 +46,7 @@ const navItems = [
     </nav>
   </div>
 
-  <!-- 📱 Menú móvil (sin ThemeToggle) -->
+  <!-- 📱 Mobile menu (without ThemeToggle) -->
   <div
     id="mobile-menu"
     class="fixed inset-0 z-30 pointer-events-none opacity-0 scale-95 transition-all duration-300 ease-out transform bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg"
@@ -56,7 +56,7 @@ const navItems = [
         <button
           id="close-menu"
           class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Cerrar menú"
+          aria-label="Close menu"
         >
           <svg
             class="w-6 h-6 text-gray-700 dark:text-gray-200"
@@ -119,7 +119,7 @@ const navItems = [
     closeMenu?.addEventListener("click", closeMobileMenu);
     navItemsMobile.forEach((item) => item.addEventListener("click", closeMobileMenu));
 
-    // Scroll con offset de header
+    // Scroll with header offset
     const OFFSET = 80;
     [...navItemsDesktop, ...navItemsMobile].forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -136,7 +136,7 @@ const navItems = [
       });
     });
 
-    // Highlight del menú
+    // Active link highlight
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

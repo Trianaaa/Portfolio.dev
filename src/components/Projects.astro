@@ -90,9 +90,9 @@ const DEPLOY_TAGS = {
 
 const PROJECTS = [
   {
-    title: "Landing de Tesla",
+    title: "Tesla Landing",
     description:
-      "Una landing moderna inspirada en la página oficial de Tesla, construida con Astro, Tailwind y JavaScript.",
+      "A modern landing page inspired by Tesla's official website, built with Astro, Tailwind, and JavaScript.",
     linkpage: "https://landing-tesla-one.vercel.app",
     github: "https://github.com/Trianaaa/landing-_Tesla",
     image: "teslapage.webp",
@@ -100,9 +100,9 @@ const PROJECTS = [
     deploy: DEPLOY_TAGS.VERCEL,
   },
   {
-    title: "Dashboard API",
+    title: "API Dashboard",
     description:
-      "Un dashboard interactivo que consume datos desde una API, construido con Astro y Tailwind para visualizar métricas clave.",
+      "An interactive dashboard that fetches data from an API, built with Astro and Tailwind to visualize key metrics.",
     linkpage: "https://dashboard-api-pablo-triana.vercel.app/",
     github: "https://github.com/Trianaaa/dashboard_api_pablo_triana",
     image: "panel.webp",
@@ -110,9 +110,9 @@ const PROJECTS = [
     deploy: DEPLOY_TAGS.VERCEL,
   },
   {
-    title: "Gestión de Usuarios",
+    title: "User Management",
     description:
-      "Esta aplicación permite consultar, agregar y eliminar usuarios usando una API externa. Se muestran únicamente los usuarios activos y se brinda una interfaz amigable para gestionar sus datos.",
+      "This app allows you to view, add, and delete users using an external API. Only active users are displayed and a friendly UI is provided to manage their data.",
     linkpage: "https://prueba-gules-chi.vercel.app/",
     github: "https://github.com/Trianaaa/prueba/tree/Prueba_ingco",
     image: "gestion.webp",
@@ -127,9 +127,9 @@ const PROJECTS = [
     deploy: DEPLOY_TAGS.VERCEL,
   },
   {
-    title: "Empleados y Productos",
+    title: "Employees and Products",
     description:
-      "Esta aplicación permite consultar, agregar y eliminar empleados y productos de la empresa. Se muestra una lista de empleados con sus datos y productos, los cuales se guardan en una base de datos MongoDB la cual se encuentra desplegada en Render.",
+      "This app allows managing employees and products of the company. It displays a list of employees and their associated products stored in a MongoDB database deployed on Render.",
     linkpage: "https://login-client-mep6.vercel.app/",
     github: "https://github.com/Trianaaa/login",
     image: "employee.webp",
@@ -156,7 +156,7 @@ const PROJECTS = [
       <p class="text-base text-gray-800 dark:text-white/90 mb-4">{description}</p>
 
       <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
-        Tecnologías usadas:
+        Technologies used:
       </div>
       <ul class="flex flex-wrap gap-2 mb-4">
         {tags.map((tag) => (
@@ -172,7 +172,7 @@ const PROJECTS = [
       {deploy && (
         <div class="mb-4">
           <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
-            Desplegada con:
+            Deployed with:
           </span>
           <div class="flex flex-wrap gap-2">
             {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
@@ -188,14 +188,14 @@ const PROJECTS = [
       <img
         class="rounded-xl shadow-md w-full object-cover mb-4"
         src={image}
-        alt={`Captura del proyecto ${title}`}
+        alt={`Project screenshot: ${title}`}
       />
 
       <div class="flex gap-4">
         {linkpage && (
           <SocialPill href={linkpage} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
             <LinkIcon class="size-5 md:size-6" />
-            Ver proyecto
+            View Project
           </SocialPill>
         )}
         {github && (

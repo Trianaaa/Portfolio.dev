@@ -3,46 +3,46 @@ import ExperienceItems from "./ExperiencieItems.astro";
 
 const EXPERIENCIE = [
   {
-    date: "Marzo/2024 - Junio/2025",
-    title: "Ingeniero de soporte",
+    date: "March/2024 - June/2025",
+    title: "Support Engineer",
     company: "CNA Sistemas & Soluciones",
     description:
-      "Responsable de brindar soporte técnico en sitio y remoto a usuarios en toda Latinoamérica, ofreciendo asistencia en la resolución de problemas de hardware, software y conectividad. Encargado de la gestión y seguimiento de proyectos asignados relacionados con infraestructura tecnológica.",
+      "Responsible for providing on-site and remote technical support to users across Latin America, assisting in the resolution of hardware, software, and connectivity issues. In charge of managing and monitoring assigned projects related to IT infrastructure.",
     link: "https://www.cnasistemas.com"
   },
   {
-    date: "Febrero/2024 - Marzo/2025",
-    title: "Técnico de soporte",
+    date: "February/2024 - March/2025",
+    title: "Support Technician",
     company: "Tecnología Informática TECINF SAS",
     description:
-      "Responsable de brindar soporte técnico en sitio y de forma remota, atendiendo requerimientos de usuarios en toda Latinoamérica. Proveo asistencia en la resolución de problemas relacionados con hardware, software, conectividad y ofimática, así como en la gestión de proyectos asignados de infraestructura tecnológica.",
+      "Provided on-site and remote technical support, addressing user requirements across Latin America. Assisted in solving issues related to hardware, software, connectivity, and office tools, as well as in the management of assigned infrastructure projects.",
     link: "https://www.tecinf.net/"
   },
   {
-    date: "Diciembre/2023 - Enero/2024",
-    title: "Asistente de tecnología",
+    date: "December/2023 - January/2024",
+    title: "Technology Assistant",
     company: "Merani Proyectos",
     description:
-      "Apoyo de gestión y creación de contenido visual y didáctico para cursos brindados en la plataforma de estudio de la fundación, para proyectos académicos dirigidos para el gobierno.",
+      "Supported the management and creation of visual and didactic content for courses offered on the foundation’s learning platform, aimed at government-led academic projects.",
     link: "https://albertomerani.org/"
   },
   {
-    date: "Junio/2022 - Diciembre/2023",
-    title: "Auxiliar Comercial - CENASIT S.A.S",
+    date: "June/2022 - December/2023",
+    title: "Commercial Assistant - CENASIT S.A.S",
     company: "CENASIT S.A.S",
     description:
-      "Apoyo integral al área comercial, incluyendo gestión documental, oferta de cursos presenciales y virtuales, manejo de proveedores a nivel nacional, ingreso de participantes al centro de entrenamiento, manejo y gestión de cartera, y colaboración en la gestión de proyectos internos, como la implementación de un sistema de registro digital de participantes que optimizó los procesos en un 30%.",
+      "Provided comprehensive support to the commercial department, including document management, promotion of in-person and virtual courses, supplier management nationwide, participant registration at the training center, portfolio management, and assistance in internal project execution such as implementing a digital participant registration system, optimizing processes by 30%.",
     link: "https://www.cenasit.com"
   }
 ];
 ---
 
-  <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3">
-    {
-      EXPERIENCIE.map((experiencie) => (
-        <li class="mb-10 ms-4">
-          <ExperienceItems {...experiencie} />
-        </li>
-      ))
-    }
-  </ol>
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItems {...experiencie} />
+      </li>
+    ))
+  }
+</ol>

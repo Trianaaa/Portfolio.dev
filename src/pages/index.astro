@@ -8,7 +8,7 @@ import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
 import Curriculum from "../components/Curriculum.astro";
 
-// Íconos
+// Icons
 import CodeIcon from "../components/icons/Code.astro";
 import CaseIcon from "../components/icons/Case.astro";
 import BookIcon from "../components/icons/Book.astro";
@@ -16,54 +16,56 @@ import CVIcon from "../components/icons/CV.astro";
 ---
 
 <Layout
-  title="Portfolio de Pablo Triana - Desarrollador Web e Ingeniero de Sistemas"
-  description="Portafolio profesional de Pablo Triana. Experto en desarrollo web, soporte IT y soluciones tecnológicas. ¡Conóceme!"
+  title="Pablo Triana's Portfolio - Web Developer & Systems Engineer"
+  description="Professional portfolio of Pablo Triana. Expert in web development, IT support, and tech solutions. Get to know me!"
 >
   <main class="px-4">
-    <!-- ✅ Sección Hero separada -->
-    <Hero />
+    <!-- ✅ Hero Section -->
+    <SectionContainer id="about-me" class="pb-24">
+      <Hero />
+    </SectionContainer>
 
-    <!-- 🚀 Proyectos -->
-    <SectionContainer id="proyectos" class="pb-24">
+    <!-- 🚀 Projects -->
+    <SectionContainer id="projects" class="pb-24">
       <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
         <CodeIcon class="size-7" />
-        Proyectos
+        Projects
       </h2>
       <Projects />
     </SectionContainer>
 
-    <!-- 🎓 Educación -->
-    <SectionContainer id="educacion" class="pb-24">
+    <!-- 🎓 Education -->
+    <SectionContainer id="education" class="pb-24">
       <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
         <BookIcon class="size-7" />
-        Educación
+        Education
       </h2>
       <Education />
     </SectionContainer>
 
-    <!-- 🧑‍💼 Experiencia -->
-    <SectionContainer id="experiencia" class="pb-24">
+    <!-- 🧑‍💼 Experience -->
+    <SectionContainer id="experience" class="pb-24">
       <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
         <CaseIcon class="size-7" />
-        Experiencia
+        Experience
       </h2>
       <Experience />
     </SectionContainer>
 
-    <!-- 💻 Tecnologías -->
-    <SectionContainer id="tecnologias" class="pb-24">
+    <!-- 💻 Technologies -->
+    <SectionContainer id="technologies" class="pb-24">
       <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
         <CodeIcon class="size-7" />
-        Tecnologías
+        Technologies
       </h2>
       <TecnologiasCarousel />
     </SectionContainer>
 
-    <!-- 📄 Currículum -->
-    <SectionContainer id="curriculum" class="pb-24">
+    <!-- 📄 Resume -->
+    <SectionContainer id="resume" class="pb-24">
       <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
         <CVIcon class="size-7" />
-        Curriculum Vitae
+        Resume
       </h2>
       <Curriculum />
     </SectionContainer>
