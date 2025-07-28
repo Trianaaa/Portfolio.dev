@@ -9,6 +9,13 @@ import GitHubIcon from "../components/icons/GitHub.astro";
 import LinkIcon from "../components/icons/Link.astro";
 import ReactIcon from "../components/icons/React.astro";
 import NextIcon from "../components/icons/Next.astro";
+import NestjsIcon from "../components/icons/Nestjs.astro";
+import TurboIcon from "../components/icons/TurboRepo.astro";
+import MongoIcon from "../components/icons/Mongodb.astro";
+
+import VercelIcon from "../components/icons/Vercel.astro";
+import NetlifyIcon from "../components/icons/Netlify.astro";
+import RenderIcon from "../components/icons/Render.astro";
 
 const TAGS = {
   HTML: {
@@ -46,71 +53,158 @@ const TAGS = {
     class: "bg-black text-white font-semibold",
     icon: NextIcon,
   },
+  NESTJS: {
+    name: "Nest.js",
+    class: "bg-black text-white font-semibold",
+    icon: NestjsIcon,
+  },
+  TURBO: {
+    name: "TurboRepo",
+    class: "bg-white text-black font-semibold",
+    icon: TurboIcon,
+  },
+  MONGO: {
+    name: "MongoDB",
+    class: "bg-[#6aa50f] text-black font-semibold",
+    icon: MongoIcon,
+  },
+};
+
+const DEPLOY_TAGS = {
+  VERCEL: {
+    name: "Vercel",
+    class: "bg-[#aaaaaa] text-black font-semibold",
+    icon: VercelIcon,
+  },
+  NETLIFY: {
+    name: "Netlify",
+    class: "bg-green-600 text-white font-semibold",
+    icon: NetlifyIcon,
+  },
+  RENDER: {
+    name: "Render",
+    class: "bg-white text-black font-semibold",
+    icon: RenderIcon,
+  },
 };
 
 const PROJECTS = [
   {
     title: "Landing de Tesla",
-    description: "Una landing moderna inspirada en la página oficial de Tesla, construida con Astro, Tailwind y JavaScript.",
+    description:
+      "Una landing moderna inspirada en la página oficial de Tesla, construida con Astro, Tailwind y JavaScript.",
     linkpage: "https://landing-tesla-one.vercel.app",
     github: "https://github.com/Trianaaa/landing-_Tesla",
     image: "teslapage.webp",
     tags: [TAGS.HTML, TAGS.CSS, TAGS.ASTRO, TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    deploy: DEPLOY_TAGS.VERCEL,
   },
   {
     title: "Dashboard API",
-    description: "Un dashboard interactivo que consume datos desde una API, construido con Astro y Tailwind para visualizar métricas clave.",
+    description:
+      "Un dashboard interactivo que consume datos desde una API, construido con Astro y Tailwind para visualizar métricas clave.",
     linkpage: "https://dashboard-api-pablo-triana.vercel.app/",
     github: "https://github.com/Trianaaa/dashboard_api_pablo_triana",
     image: "panel.webp",
     tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    deploy: DEPLOY_TAGS.VERCEL,
   },
   {
-    title: "Gestion de Usuarios",
-    description: "Esta aplicación permite consultar, agregar y eliminar usuarios usando una API externa. Se muestran únicamente los usuarios activos y se brinda una interfaz amigable para gestionar sus datos.",
+    title: "Gestión de Usuarios",
+    description:
+      "Esta aplicación permite consultar, agregar y eliminar usuarios usando una API externa. Se muestran únicamente los usuarios activos y se brinda una interfaz amigable para gestionar sus datos.",
     linkpage: "https://prueba-gules-chi.vercel.app/",
     github: "https://github.com/Trianaaa/prueba/tree/Prueba_ingco",
     image: "gestion.webp",
-    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT],
+    tags: [
+      TAGS.HTML,
+      TAGS.CSS,
+      TAGS.TAILWIND,
+      TAGS.JAVASCRIPT,
+      TAGS.REACT,
+      TAGS.NEXT,
+    ],
+    deploy: DEPLOY_TAGS.VERCEL,
+  },
+  {
+    title: "Empleados y Productos",
+    description:
+      "Esta aplicación permite consultar, agregar y eliminar empleados y productos de la empresa. Se muestra una lista de empleados con sus datos y productos, los cuales se guardan en una base de datos MongoDB la cual se encuentra desplegada en Render.",
+    linkpage: "https://login-client-mep6.vercel.app/",
+    github: "https://github.com/Trianaaa/login",
+    image: "employee.webp",
+    tags: [
+      TAGS.HTML,
+      TAGS.CSS,
+      TAGS.TAILWIND,
+      TAGS.JAVASCRIPT,
+      TAGS.REACT,
+      TAGS.NEXT,
+      TAGS.NESTJS,
+      TAGS.TURBO,
+      TAGS.MONGO,
+    ],
+    deploy: [DEPLOY_TAGS.VERCEL, DEPLOY_TAGS.RENDER],
   },
 ];
 ---
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  {
-    PROJECTS.map(({ title, description, tags, image, linkpage, github }) => (
-      <article class="bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md hover:scale-[1.01] transition-transform duration-300 border border-gray-300 dark:border-white/10">
-        <h3 class="text-2xl font-bold text-[#00bfa5] mb-2">{title}</h3>
-        <p class="text-base text-gray-800 dark:text-white/90 mb-4">{description}</p>
+  {PROJECTS.map(({ title, description, tags, image, linkpage, github, deploy }) => (
+    <article class="bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md hover:scale-[1.01] transition-transform duration-300 border border-gray-300 dark:border-white/10">
+      <h3 class="text-2xl font-bold text-[#00bfa5] mb-2">{title}</h3>
+      <p class="text-base text-gray-800 dark:text-white/90 mb-4">{description}</p>
 
-        <ul class="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag) => (
-            <li>
-              <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${tag.class}`}>
-                <tag.icon class="w-4 h-4" />
-                {tag.name}
+      <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
+        Tecnologías usadas:
+      </div>
+      <ul class="flex flex-wrap gap-2 mb-4">
+        {tags.map((tag) => (
+          <li>
+            <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${tag.class}`}>
+              <tag.icon class="w-4 h-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {deploy && (
+        <div class="mb-4">
+          <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
+            Desplegada con:
+          </span>
+          <div class="flex flex-wrap gap-2">
+            {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
+              <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${d.class}`}>
+                <d.icon class="w-4 h-4" />
+                {d.name}
               </span>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
+      )}
 
-        <img
-          class="rounded-xl shadow-md w-full object-cover mb-4"
-          src={image}
-          alt={`Captura del proyecto ${title}`}
-        />
+      <img
+        class="rounded-xl shadow-md w-full object-cover mb-4"
+        src={image}
+        alt={`Captura del proyecto ${title}`}
+      />
 
-        <div class="flex gap-4">
+      <div class="flex gap-4">
+        {linkpage && (
           <SocialPill href={linkpage} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
             <LinkIcon class="size-5 md:size-6" />
             Ver proyecto
-          </SocialPill> 
+          </SocialPill>
+        )}
+        {github && (
           <SocialPill href={github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-          <GitHubIcon class="size-5 md:size-6" />
-          GitHub
-        </SocialPill>
-        </div>
-      </article>
-    ))
-  }
+            <GitHubIcon class="size-5 md:size-6" />
+            GitHub
+          </SocialPill>
+        )}
+      </div>
+    </article>
+  ))}
 </section>

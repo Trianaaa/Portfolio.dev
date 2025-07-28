@@ -2,236 +2,164 @@
 import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
-  {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
-  },
-  {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/#proyectos",
-  },
-  {
-    title: "Educación",
-    label: "educacion",
-    url: "/#educacion",
-  },
-  {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
-  },
-  {
-    title: "Tecnologías",
-    label: "tecnologias",
-    url: "/#tecnologias",
-  },
+  { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
+  { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
+  { title: "Educación", label: "educacion", url: "/#educacion" },
+  { title: "Experiencia", label: "experiencia", url: "/#experiencia" },
+  { title: "Tecnologías", label: "tecnologias", url: "/#tecnologias" },
 ];
 ---
-
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
->
+<header class="fixed top-0 z-20 w-full flex justify-center px-4 py-2">
   <div
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-between items-center"
+    class="flex items-center justify-between w-full max-w-5xl px-4 py-2 rounded-full dark:bg-gray-800/90 bg-white/60 backdrop-blur-md shadow-lg ring-1 ring-white/10"
   >
+    <!-- 🔘 Botón hamburguesa a la izquierda -->
     <button
       id="menu-toggle"
       class="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       aria-label="Abrir menú"
     >
       <svg
-        class="w-6 h-6 text-gray-600 dark:text-gray-200"
+        class="w-6 h-6 text-gray-700 dark:text-gray-200"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        ></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <nav
-      id="main-nav"
-      class="hidden lg:flex flex-grow justify-center items-center gap-x-2"
-    >
-      {
-        navItems.map((link) => (
-          <a
-            class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
-        ))
-      }
+    <!-- 🌐 Navegación principal -->
+    <nav id="main-nav" class="hidden lg:flex gap-x-4 items-center mx-auto">
+      {navItems.map((link) => (
+        <a
+          class="relative px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 transition hover:text-blue-500 dark:hover:text-blue-400"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))}
       <ThemeToggle />
     </nav>
   </div>
 
+  <!-- 📱 Menú móvil (sin ThemeToggle) -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-20 hidden lg:hidden"
+    class="fixed inset-0 z-30 pointer-events-none opacity-0 scale-95 transition-all duration-300 ease-out transform bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg"
   >
-    <div class="flex justify-end p-4">
-      <button
-        id="close-menu"
-        class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        aria-label="Cerrar menú"
-      >
-        <svg
-          class="w-6 h-6 text-gray-600 dark:text-gray-200"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+    <div class="flex flex-col justify-start items-center h-full py-16 px-6 space-y-6">
+      <div class="absolute top-4 left-4">
+        <button
+          id="close-menu"
+          class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-label="Cerrar menú"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          ></path>
-        </svg>
-      </button>
-    </div>
-    <nav class="flex flex-col items-center justify-center h-full text-lg">
-      {
-        navItems.map((link) => (
+          <svg
+            class="w-6 h-6 text-gray-700 dark:text-gray-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col items-start space-y-6 w-full max-w-xs mt-20">
+        {navItems.map((link) => (
           <a
-            class="block py-4 text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-500"
+            class="text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition"
             aria-label={link.label}
             href={link.url}
           >
             {link.title}
           </a>
-        ))
-      }
-      <div class="mt-4">
-        <ThemeToggle />
-      </div>
-    </nav>
+        ))}
+      </nav>
+    </div>
   </div>
 </header>
 
+<!-- ⚙️ Script -->
 <script>
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll("section");
-    // Selecciona los enlaces de la navegación principal (escritorio)
     const navItemsDesktop = document.querySelectorAll("#main-nav a");
-    // Selecciona los enlaces del menú móvil
-    const navItemsMobile = document.querySelectorAll("#mobile-menu nav a"); // Asegúrate de apuntar a la nav dentro del mobile-menu
+    const navItemsMobile = document.querySelectorAll("#mobile-menu nav a");
 
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
     const closeMenu = document.getElementById("close-menu");
 
-    // Función para cerrar el menú móvil
     const closeMobileMenu = () => {
-      if (mobileMenu) {
-        mobileMenu.classList.add("hidden");
-        mobileMenu.classList.remove("flex");
-        // Opcional: restringe el scroll del body cuando el menú está abierto
-        document.body.style.overflow = "";
-      }
+      mobileMenu.classList.remove("opacity-100", "scale-100");
+      mobileMenu.classList.add("opacity-0", "scale-95");
+      setTimeout(() => {
+        mobileMenu.classList.add("pointer-events-none");
+      }, 300);
+      document.body.style.overflow = "";
     };
 
-    // Toggle para el menú de hamburguesa
     menuToggle?.addEventListener("click", () => {
-      if (mobileMenu) {
-        mobileMenu.classList.toggle("hidden");
-        mobileMenu.classList.toggle("flex");
-        // Opcional: previene el scroll del body cuando el menú está abierto
-        if (mobileMenu.classList.contains("flex")) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
+      const isHidden = mobileMenu.classList.contains("pointer-events-none");
+
+      if (isHidden) {
+        mobileMenu.classList.remove("pointer-events-none", "opacity-0", "scale-95");
+        mobileMenu.classList.add("opacity-100", "scale-100");
+        document.body.style.overflow = "hidden";
+      } else {
+        closeMobileMenu();
       }
     });
 
     closeMenu?.addEventListener("click", closeMobileMenu);
+    navItemsMobile.forEach((item) => item.addEventListener("click", closeMobileMenu));
 
-    // Cerrar menú móvil al hacer clic en un enlace
-    navItemsMobile.forEach((item) => {
-      item.addEventListener("click", closeMobileMenu);
-    });
-
-    const callback = (entries: any[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Remover la clase de todos los elementos antes de añadirla al activo
-          navItemsDesktop.forEach((item) => item.classList.remove("text-blue-500"));
-          navItemsMobile.forEach((item) => item.classList.remove("text-blue-500"));
-
-          // Actualizar enlaces del menú de escritorio
-          navItemsDesktop.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500");
-            }
-          });
-
-          // Actualizar enlaces del menú móvil
-          navItemsMobile.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500");
-            }
-          });
+    // Scroll con offset de header
+    const OFFSET = 80;
+    [...navItemsDesktop, ...navItemsMobile].forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("/#")) {
+          e.preventDefault();
+          const id = href.slice(2);
+          const el = document.getElementById(id);
+          if (el) {
+            const y = el.getBoundingClientRect().top + window.scrollY - OFFSET;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
         }
       });
-    };
-
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
     });
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    // Highlight del menú
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navItemsDesktop.forEach((item) => item.classList.remove("text-blue-500"));
+            navItemsMobile.forEach((item) => item.classList.remove("text-blue-500"));
 
-    // Cleanup function
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => {
-          observer.observe(section);
+            navItemsDesktop.forEach((item) => {
+              if (item.getAttribute("aria-label") == entry.target.id) {
+                item.classList.add("text-blue-500");
+              }
+            });
+
+            navItemsMobile.forEach((item) => {
+              if (item.getAttribute("aria-label") == entry.target.id) {
+                item.classList.add("text-blue-500");
+              }
+            });
+          }
         });
-      }
-    };
+      },
+      { threshold: 0.3 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
   });
 </script>
-
-<style>
-  /* La animación de sombra se aplicará al contenedor de la navegación principal */
-  header > div { /* Apunta al div que contiene el botón de hamburguesa y la nav principal */
-    animation: nav-shadown 1s linear both;
-    animation-timeline: scroll();
-    animation-range: 0 100px;
-    /* Aplica el fondo y el borde a este contenedor */
-    @apply dark:bg-gray-800/90 bg-white/50 shadow-lg ring-1 backdrop-blur ring-white/10 rounded-full;
-  }
-
-  @keyframes nav-shadown {
-    0% {
-      @apply dark:bg-gray-800/0 bg-white/0 shadow-none ring-0;
-    }
-    to {
-      @apply shadow-lg ring-1 backdrop-blur ring-white/10;
-    }
-  }
-
-  /* Asegúrate de que el menú móvil no tenga los estilos de scroll animation */
-  #mobile-menu {
-    animation: none !important;
-  }
-</style>
