@@ -12,10 +12,14 @@ import NextIcon from "../components/icons/Next.astro";
 import NestjsIcon from "../components/icons/Nestjs.astro";
 import TurboIcon from "../components/icons/TurboRepo.astro";
 import MongoIcon from "../components/icons/Mongodb.astro";
+import PrismaIcon from "../components/icons/Prisma.astro";
+import NextAuthIcon from "../components/icons/NextAuth.astro";
 
 import VercelIcon from "../components/icons/Vercel.astro";
 import NetlifyIcon from "../components/icons/Netlify.astro";
 import RenderIcon from "../components/icons/Render.astro";
+import Next from "../components/icons/Next.astro";
+
 
 const TAGS = {
   HTML: {
@@ -67,6 +71,16 @@ const TAGS = {
     name: "MongoDB",
     class: "bg-[#6aa50f] text-black font-semibold",
     icon: MongoIcon,
+  },
+  PRISMA: {
+    name: "Prisma",
+    class: "bg-white text-black font-semibold",
+    icon: PrismaIcon
+  },
+  NEXTAUTH: {
+    name: "NextAuth.js",
+    class: "bg-[#af69cd] text-white font-semibold",
+    icon: NextAuthIcon,
   },
 };
 
@@ -146,6 +160,42 @@ const PROJECTS = [
     ],
     deploy: [DEPLOY_TAGS.VERCEL, DEPLOY_TAGS.RENDER],
   },
+  {
+    title: "Tabogo Live",
+    description:
+      "Tabogo Live is a fullstack web application that allows users to explore bars and purchase tickets for events in Bogotá. The platform offers an intuitive experience to discover venues, view event details, and manage online purchases.",
+    linkpage: "https://tabogo.vercel.app/",
+    github: "https://github.com/fabianra5789/NightlifeHub",
+    image: "tabogo.webp",
+    tags: [
+      TAGS.HTML,
+      TAGS.CSS,
+      TAGS.TAILWIND,
+      TAGS.JAVASCRIPT,
+      TAGS.REACT,
+      TAGS.NEXT,
+      TAGS.MONGO,
+      TAGS.PRISMA,
+      TAGS.NEXTAUTH,
+    ],
+    deploy: [DEPLOY_TAGS.VERCEL],
+  },
+  {
+  title: "Personal Portfolio",
+  description:
+    "This is my personal portfolio website built with Astro and styled with Tailwind CSS. It showcases my projects, skills, and experience in a clean and responsive layout, allowing visitors to learn more about me and explore my work.",
+  linkpage: "https://portfolio-dev-plum.vercel.app/",
+  github: "https://github.com/Trianaaa/Portfolio.dev",
+  image: "portfolio.webp",
+  tags: [
+    TAGS.HTML,
+    TAGS.CSS,
+    TAGS.TAILWIND,
+    TAGS.ASTRO,
+  ],
+  deploy: [DEPLOY_TAGS.VERCEL],
+}
+
 ];
 ---
 
