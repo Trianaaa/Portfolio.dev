@@ -1,0 +1,20 @@
+---
+// src/components/Curriculum.astro
+import SocialPill from "./SocialPill.astro";
+import CVIcon from "./icons/CV.astro";
+
+// Asegúrate de poner tu archivo PDF en la carpeta `public`
+const cvUrl = "public/CV - Pablo Triana 23072025.pdf";
+---
+
+<section class="w-full flex flex-col items-center justify-center my-10 px-4">
+  <h2 class="text-2xl font-semibold mb-4 text-center">
+    ¿Quieres conocer más de mí?
+  </h2>
+  <div class="flex justify-center mt-8">
+    <SocialPill href={cvUrl} download>
+      <CVIcon class="size-5 md:size-6" />
+      <span class="ml-2">Descargar CV</span>
+    </SocialPill>
+  </div>
+</section>

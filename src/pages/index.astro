@@ -6,11 +6,13 @@ import TecnologiasCarousel from "../components/TecnologiasCarousel.astro";
 import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
+import Curriculum from "../components/Curriculum.astro";
 
 // Íconos
 import CodeIcon from "../components/icons/Code.astro";
 import CaseIcon from "../components/icons/Case.astro";
 import BookIcon from "../components/icons/Book.astro";
+import CVIcon from "../components/icons/CV.astro";
 ---
 
 <Layout
@@ -55,6 +57,15 @@ import BookIcon from "../components/icons/Book.astro";
         Tecnologías
       </h2>
       <TecnologiasCarousel />
+    </SectionContainer>
+
+    <!-- 📄 Currículum -->
+    <SectionContainer id="curriculum" class="pb-24">
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-x-3">
+        <CVIcon class="size-7" />
+        Curriculum Vitae
+      </h2>
+      <Curriculum />
     </SectionContainer>
   </main>
 </Layout>

@@ -9,50 +9,75 @@ const technologies = [
   { name: "Python", icon: "/tech/python.svg" },
   { name: "Git", icon: "/tech/git.svg" },
   { name: "MongoDB", icon: "/tech/mongodb.svg" },
+  { name: "PostgreSQL", icon: "/tech/postgresql.svg" },
+  { name: "Docker", icon: "/tech/docker.svg" },
+  { name: "Kubernetes", icon: "/tech/kubernetes.svg" },
+  { name: "Next.js", icon: "/tech/nextjs.svg" },
+  { name: "Astro", icon: "/tech/astro.svg" },
+  { name: "Tailwind CSS", icon: "/tech/tailwindcss.svg" },
+  { name: "Bootstrap", icon: "/tech/bootstrap.svg" },
+  { name: "Vue.js", icon: "/tech/vue.svg" },
+  { name: "Angular", icon: "/tech/angular.svg" },
 ];
 const duplicated = [...technologies, ...technologies];
 ---
 
-<section class="py-12 flex flex-col items-center text-center">
-  
-
-  <div class="group overflow-hidden w-full max-w-6xl">
-    <div class="flex gap-10 animate-marquee w-max group-hover:[animation-play-state:paused]">
-      {duplicated.map((tech, index) => (
-        <div
-          key={index}
-          class="flex flex-col items-center justify-center min-w-[120px] transition-transform duration-500 ease-in-out"
-        >
-          <div class="tech-card backdrop-blur-md bg-white/20 dark:bg-white/10 p-4 rounded-xl shadow-md border border-gray-200 dark:border-white/10">
-            <img src={tech.icon} alt={tech.name} class="h-14 w-14 object-contain" loading="lazy" />
-            <span class="mt-2 text-sm font-medium text-gray-800 dark:text-white">{tech.name}</span>
+<section
+  class="py-16 sm:py-24 flex flex-col items-center text-center bg-transparent overflow-x-hidden overflow-y-visible"
+>
+  <div class="relative w-full max-w-7xl px-4 sm:px-6 overflow-visible">
+    <div class="flex gap-6 sm:gap-10 animate-marquee w-max">
+      {
+        duplicated.map((tech, index) => (
+          <div
+            key={index}
+            class="flex flex-col items-center justify-center min-w-[100px] sm:min-w-[120px]"
+          >
+            <div class="tech-card p-3 sm:p-4 rounded-xl border border-white/30 dark:border-white/10 backdrop-blur-lg bg-white/10 dark:bg-white/5 shadow-md">
+              <img
+                src={tech.icon}
+                alt={`Ícono de ${tech.name}`}
+                class="h-12 w-12 sm:h-14 sm:w-14 object-contain"
+                loading="lazy"
+              />
+              <span class="mt-2 text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-100">
+                {tech.name}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
 
+
 <style>
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  100% {
-    transform: translateX(-50%);
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    display: flex;
+    will-change: transform;
   }
-}
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.tech-card {
-  transition: transform 0.5s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-}
-.tech-card:hover {
-  transform: perspective(800px) rotateY(10deg) scale(1.08);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
+  .tech-card {
+    transition:
+      transform 0.5s ease,
+      box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .tech-card:hover {
+    transform: rotateY(10deg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
 </style>
