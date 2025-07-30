@@ -20,7 +20,6 @@ import NetlifyIcon from "../components/icons/Netlify.astro";
 import RenderIcon from "../components/icons/Render.astro";
 import Next from "../components/icons/Next.astro";
 
-
 const TAGS = {
   HTML: {
     name: "HTML",
@@ -75,7 +74,7 @@ const TAGS = {
   PRISMA: {
     name: "Prisma",
     class: "bg-white text-black font-semibold",
-    icon: PrismaIcon
+    icon: PrismaIcon,
   },
   NEXTAUTH: {
     name: "NextAuth.js",
@@ -181,80 +180,104 @@ const PROJECTS = [
     deploy: [DEPLOY_TAGS.VERCEL],
   },
   {
-  title: "Personal Portfolio",
-  description:
-    "This is my personal portfolio website built with Astro and styled with Tailwind CSS. It showcases my projects, skills, and experience in a clean and responsive layout, allowing visitors to learn more about me and explore my work.",
-  linkpage: "https://portfolio-dev-plum.vercel.app/",
-  github: "https://github.com/Trianaaa/Portfolio.dev",
-  image: "portfolio.webp",
-  tags: [
-    TAGS.HTML,
-    TAGS.CSS,
-    TAGS.TAILWIND,
-    TAGS.ASTRO,
-  ],
-  deploy: [DEPLOY_TAGS.VERCEL],
-}
-
+    title: "Personal Portfolio",
+    description:
+      "This is my personal portfolio website built with Astro and styled with Tailwind CSS. It showcases my projects, skills, and experience in a clean and responsive layout, allowing visitors to learn more about me and explore my work.",
+    linkpage: "https://portfolio-dev-plum.vercel.app/",
+    github: "https://github.com/Trianaaa/Portfolio.dev",
+    image: "portfolio.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.ASTRO],
+    deploy: [DEPLOY_TAGS.VERCEL],
+  },
+  {
+    title: "TicTacToe game",
+    description:
+      "A classic TicTacToe game built with Astro and Tailwind CSS. Challenge yourself or a friend to see who can get three in a row first! The game features a simple, responsive design and keeps track of the current player, making it fun and easy to play on any device.",
+    linkpage: "https://tictactoe-six-rho.vercel.app/",
+    github: "https://github.com/Trianaaa/TicTacToe-game",
+    image: "tictac.png",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.ASTRO],
+    deploy: [DEPLOY_TAGS.VERCEL],
+  },
 ];
 ---
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-  {PROJECTS.map(({ title, description, tags, image, linkpage, github, deploy }) => (
-    <article class="bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md hover:scale-[1.01] transition-transform duration-300 border border-gray-300 dark:border-white/10">
-      <h3 class="text-2xl font-bold text-[#00bfa5] mb-2">{title}</h3>
-      <p class="text-base text-gray-800 dark:text-white/90 mb-4">{description}</p>
+  {
+    PROJECTS.map(
+      ({ title, description, tags, image, linkpage, github, deploy }) => (
+        <article class="bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md hover:scale-[1.01] transition-transform duration-300 border border-gray-300 dark:border-white/10">
+          <h3 class="text-2xl font-bold text-[#00bfa5] mb-2">{title}</h3>
+          <p class="text-base text-gray-800 dark:text-white/90 mb-4">
+            {description}
+          </p>
 
-      <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
-        Technologies used:
-      </div>
-      <ul class="flex flex-wrap gap-2 mb-4">
-        {tags.map((tag) => (
-          <li>
-            <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${tag.class}`}>
-              <tag.icon class="w-4 h-4" />
-              {tag.name}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {deploy && (
-        <div class="mb-4">
-          <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
-            Deployed with:
-          </span>
-          <div class="flex flex-wrap gap-2">
-            {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
-              <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${d.class}`}>
-                <d.icon class="w-4 h-4" />
-                {d.name}
-              </span>
-            ))}
+          <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
+            Technologies used:
           </div>
-        </div>
-      )}
+          <ul class="flex flex-wrap gap-2 mb-4">
+            {tags.map((tag) => (
+              <li>
+                <span
+                  class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${tag.class}`}
+                >
+                  <tag.icon class="w-4 h-4" />
+                  {tag.name}
+                </span>
+              </li>
+            ))}
+          </ul>
 
-      <img
-        class="rounded-xl shadow-md w-full object-cover mb-4"
-        src={image}
-        alt={`Project screenshot: ${title}`}
-      />
+          {deploy && (
+            <div class="mb-4">
+              <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
+                Deployed with:
+              </span>
+              <div class="flex flex-wrap gap-2">
+                {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
+                  <span
+                    class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${d.class}`}
+                  >
+                    <d.icon class="w-4 h-4" />
+                    {d.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
-      <div class="flex gap-4">
-        {linkpage && (
-          <SocialPill href={linkpage} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-            <LinkIcon class="size-5 md:size-6" />
-            View Project
-          </SocialPill>
-        )}
-        {github && (
-          <SocialPill href={github} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-            <GitHubIcon class="size-5 md:size-6" />
-            GitHub
-          </SocialPill>
-        )}
-      </div>
-    </article>
-  ))}
+          <img
+            class="rounded-xl shadow-md w-full object-cover mb-4"
+            src={image}
+            alt={`Project screenshot: ${title}`}
+          />
+
+          <div class="flex gap-4">
+            {linkpage && (
+              <SocialPill
+                href={linkpage}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2"
+              >
+                <LinkIcon class="size-5 md:size-6" />
+                View Project
+              </SocialPill>
+            )}
+            {github && (
+              <SocialPill
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2"
+              >
+                <GitHubIcon class="size-5 md:size-6" />
+                GitHub
+              </SocialPill>
+            )}
+          </div>
+        </article>
+      )
+    )
+  }
 </section>
