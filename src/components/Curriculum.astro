@@ -5,46 +5,154 @@ import CVIcon from "./icons/CV.astro";
 const cvUrl = "/CV - Pablo Triana 23072025.pdf";
 ---
 
-<section
-  class="w-full flex flex-col items-center justify-center pt-12 pb-0 px-4 sm:px-6 text-center"
->
-  <h2
-    class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
-  >
-    Want to know more about me?
-  </h2>
-  <p
-    class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-xl"
-  >
-    Download my updated CV and learn more about my experience and skills.
-  </p>
-  <div class="mt-6 mb-2 flex flex-col items-center justify-center">
-    <SocialPill
-      href={cvUrl}
-      download
-      class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow transition duration-200 flex items-center"
-    >
-      <CVIcon class="size-5 md:size-6 mr-2" />
-      Download CV
-    </SocialPill>
+<section class="relative w-full py-20 px-4 sm:px-6 overflow-hidden">
+  <!-- Background Effects -->
+  <div class="absolute inset-0 -z-10">
+    <!-- Gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/60 to-purple-50/80 dark:from-slate-900/90 dark:via-blue-950/70 dark:to-indigo-950/90"></div>
+    
+    <!-- Animated background elements -->
+    <div class="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-blue-400/15 to-cyan-400/15 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+    <div class="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-purple-400/15 to-pink-400/15 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+  </div>
 
-    <!-- 📷 Imagen centrada entre botón y frase -->
-    <div class="mt-6 flex justify-center">
-      <img 
-        src="Pablo_Cor.png" 
-        alt="Profile illustration" 
-        class="w-40 h-40 rounded-full object-cover shadow-lg"
-      />
+  <!-- Main Content -->
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    
+    <!-- Header Section -->
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium mb-6">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        Professional Resume
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+        <span class="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
+          Want to know more about me?
+        </span>
+      </h2>
+      
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Download my updated CV and discover my complete professional journey, skills, and achievements.
+      </p>
     </div>
 
-    <!-- ✨ Frase motivacional -->
-    <blockquote
-      class="mt-6 italic text-gray-500 dark:text-gray-400 text-sm max-w-xl"
-    >
-      “The future belongs to those who believe in the beauty of their dreams.”<br />
-      <span class="not-italic font-medium"
-        >— Eleanor Roosevelt</span
-      >
-    </blockquote>
+    <!-- CV Download Section -->
+    <div class="mb-16">
+      <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-3xl p-8 md:p-10 border border-gray-200/50 dark:border-gray-700/50 shadow-xl max-w-2xl mx-auto">
+        
+        <!-- CV Preview Card -->
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
+          <div class="flex-shrink-0">
+            <div class="relative group">
+              <!-- CV Icon with glow effect -->
+              <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+              <div class="relative w-20 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                <CVIcon class="w-10 h-10 text-white" />
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center md:text-left">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Professional CV
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Complete overview of my experience, education, and technical skills
+            </p>
+            
+            <!-- CV Stats -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded-full">
+                ✓ Updated 2025
+              </span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full">
+                📄 PDF Format
+              </span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 rounded-full">
+                🚀 Ready to Work
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Button -->
+        <div class="text-center">
+          <SocialPill
+            href={cvUrl}
+            download
+            class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+          >
+            Download CV
+          </SocialPill>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Image Section -->
+    <div class="mb-12">
+      <div class="relative inline-block group">
+        <!-- Glow effect around image -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <!-- Image container -->
+        <div class="relative">
+          <img 
+            src="Pablo_Cor.png" 
+            alt="Pablo Triana - Professional Profile" 
+            class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover shadow-2xl border-4 border-white/80 dark:border-gray-700/80 transition-all duration-500 group-hover:scale-105"
+          />
+          
+          <!-- Decorative elements -->
+          <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center shadow-lg">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspirational Quote Section -->
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white/60 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+        <div class="flex items-start gap-4">
+          <!-- Quote icon -->
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+            </svg>
+          </div>
+          
+          <div class="text-left">
+            <blockquote class="text-xl md:text-2xl italic text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+              "The future belongs to those who believe in the beauty of their dreams."
+            </blockquote>
+            <cite class="text-lg font-semibold text-gray-900 dark:text-white">
+              — Eleanor Roosevelt
+            </cite>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+</style>

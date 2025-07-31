@@ -10,53 +10,113 @@ interface Props {
 const { title, description, company, link, date } = Astro.props;
 ---
 
-<div class="relative pl-6">
-  <div
-    class="absolute w-3 h-3 rounded-full top-1.5 left-0 border border-cyan-600 bg-cyan-400 dark:bg-cyan-500"
-  >
+<div class="relative group">
+  <!-- Timeline line connector -->
+  <div class="absolute left-6 top-8 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 to-transparent dark:from-cyan-500 dark:to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
+  
+  <!-- Main content card -->
+  <div class="relative pl-16 pb-12">
+    <!-- Enhanced timeline dot -->
+    <div class="absolute left-0 top-2 flex items-center justify-center">
+      <!-- Outer glow ring -->
+      <div class="absolute w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400/30 to-blue-400/30 animate-pulse"></div>
+      <!-- Main dot -->
+      <div class="relative w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 border-2 border-white dark:border-gray-900 shadow-lg group-hover:scale-125 transition-transform duration-300">
+        <!-- Inner highlight -->
+        <div class="absolute inset-1 rounded-full bg-white/30"></div>
+      </div>
+    </div>
+
+    <!-- Content card -->
+    <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] group-hover:bg-white/90 dark:group-hover:bg-gray-800/90">
+      
+      <!-- Header section -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <!-- Date badge -->
+        <time class="inline-flex items-center px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-md">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          {date}
+        </time>
+        
+        <!-- Company badge -->
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium text-gray-600 dark:text-gray-400 px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+            {company}
+          </span>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
+        {title}
+      </h3>
+
+      <!-- Description -->
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-pretty">
+        {description}
+      </p>
+
+      <!-- Skills/Technologies tags (if you want to add them later) -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <!-- You can add technology tags here in the future -->
+      </div>
+
+      <!-- Link section -->
+      {link && (
+        <div class="pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            See more about the company
+            <svg
+              class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 14 10"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 5h12M13 5L9 1M13 5L9 9"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      )}
+    </div>
   </div>
-
-  <time class="block text-sm font-semibold text-cyan-600 dark:text-cyan-400"
-    >{date}</time
-  >
-
-  <h3 class="text-lg font-bold text-cyan-800 dark:text-cyan-200 mt-1">
-    {title}
-  </h3>
-
-  <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mt-0.5">
-    {company}
-  </p>
-
-  <p
-    class="mt-2 mb-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed text-pretty"
-  >
-    {description}
-  </p>
-
-  {
-    link && (
-      <a
-        href={link}
-        target="_blank"
-        class="inline-flex items-center gap-1 text-sm font-medium text-cyan-600 dark:text-cyan-400 hover:underline hover:scale-105 transition"
-      >
-        See more about the company
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 14 10"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1 5h12M13 5L9 1M13 5L9 9"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-    )
-  }
 </div>
+
+<style>
+  /* Custom animations for enhanced visual appeal */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .group {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  /* Hover effect for the entire card */
+  .group:hover .absolute.left-6 {
+    opacity: 1;
+  }
+</style>
