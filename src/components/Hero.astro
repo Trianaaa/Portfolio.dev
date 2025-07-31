@@ -1,5 +1,4 @@
 ---
-// English version
 import SectionContainer from "../components/SectionContainer.astro";
 import Badge from "../components/Badge.astro";
 import SocialPill from "../components/SocialPill.astro";
@@ -14,11 +13,14 @@ import WhatsAppIcon from "../components/icons/WhatsApp.astro";
 
 <SectionContainer id="about-me" class="py-44 pb-32">
   <div class="flex gap-4 mb-4">
-    <img
-      class="rounded-full shadow-lg size-16"
-      src="Pablo_sal.png"
-      alt="Pablo Photo"
-    />
+    <div class="relative">
+      <img
+        class="relative rounded-full shadow-xl size-20 md:size-24 border-2 border-white/80 dark:border-gray-700/80 transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl"
+        src="Pablo_sal.png"
+        alt="Pablo Photo"
+      />
+      <span class="absolute bottom-0 right-0 size-3 md:size-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 animate-pulse"></span>
+    </div>
     <a
       href="https://www.linkedin.com/in/trianaaa/"
       target="_blank"
@@ -42,7 +44,7 @@ import WhatsAppIcon from "../components/icons/WhatsApp.astro";
     <span class="text-yellow-800 dark:text-yellow-200">Web Developer</span>
     <span> and</span>
     <span class="text-[#2e7d32]">
-      Systems Engineer from Universidad Central
+      Systems Engineer from Central University
     </span>
     <span class="text-[#00bcd4]"> in Bogotá, Colombia 🌎.</span>
     <span class="opacity-75">
