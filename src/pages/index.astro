@@ -3,10 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import TecnologiasCarousel from "../components/TecnologiasCarousel.astro";
-import Projects from "../components/Projects.astro";
+import ProjectsEnhanced from "../components/ProjectsEnhanced.astro";
 import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
 import Curriculum from "../components/Curriculum.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ScrollProgress from "../components/ScrollProgress.astro";
 
 // Icons
 import CodeIcon from "../components/icons/Code.astro";
@@ -19,6 +21,9 @@ import CVIcon from "../components/icons/CV.astro";
   title="Pablo Triana's Portfolio - Web Developer & Systems Engineer"
   description="Professional portfolio of Pablo Triana. Expert in web development, IT support, and tech solutions. Get to know me!"
 >
+  <!-- Scroll Progress Bar -->
+  <ScrollProgress />
+  
   <main class="px-4">
     <!-- ✅ Hero Section -->
     <SectionContainer id="about-me" class="pb-24">
@@ -31,7 +36,7 @@ import CVIcon from "../components/icons/CV.astro";
         <CodeIcon class="size-7" />
         Projects
       </h2>
-      <Projects />
+      <ProjectsEnhanced />
     </SectionContainer>
 
     <!-- 🎓 Education -->
@@ -68,6 +73,11 @@ import CVIcon from "../components/icons/CV.astro";
         Resume
       </h2>
       <Curriculum />
+    </SectionContainer>
+
+    <!-- 📧 Contact -->
+    <SectionContainer id="contact" class="pb-24">
+      <ContactForm />
     </SectionContainer>
   </main>
 </Layout>

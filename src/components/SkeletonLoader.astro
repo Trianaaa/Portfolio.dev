@@ -1,0 +1,54 @@
+---
+interface Props {
+  type?: 'project' | 'text' | 'avatar';
+  count?: number;
+}
+
+const { type = 'project', count = 1 } = Astro.props;
+---
+
+<div class="skeleton-container">
+  {Array.from({ length: count }).map(() => (
+    <div class="animate-pulse">
+      {type === 'project' && (
+        <div class="space-y-4">
+          <div class="bg-gray-300 dark:bg-gray-700 h-48 rounded-lg"></div>
+          <div class="space-y-2">
+            <div class="bg-gray-300 dark:bg-gray-700 h-4 rounded w-3/4"></div>
+            <div class="bg-gray-300 dark:bg-gray-700 h-4 rounded w-1/2"></div>
+          </div>
+          <div class="flex space-x-2">
+            <div class="bg-gray-300 dark:bg-gray-700 h-6 w-16 rounded-full"></div>
+            <div class="bg-gray-300 dark:bg-gray-700 h-6 w-20 rounded-full"></div>
+          </div>
+        </div>
+      )}
+      
+      {type === 'text' && (
+        <div class="space-y-2">
+          <div class="bg-gray-300 dark:bg-gray-700 h-4 rounded w-full"></div>
+          <div class="bg-gray-300 dark:bg-gray-700 h-4 rounded w-5/6"></div>
+        </div>
+      )}
+      
+      {type === 'avatar' && (
+        <div class="bg-gray-300 dark:bg-gray-700 h-16 w-16 rounded-full"></div>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

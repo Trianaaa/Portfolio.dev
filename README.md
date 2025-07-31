@@ -1,18 +1,45 @@
-# Astro Starter Kit: Basics
+# 🚀 Pablo Triana - Portfolio Personal
 
-```sh
-npm create astro@latest -- --template basics
-```
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://portfolio-dev-plum.vercel.app/)
+[![Astro](https://img.shields.io/badge/Built%20with-Astro-orange?style=for-the-badge&logo=astro)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-blue?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+> Portfolio personal de Pablo Triana - Desarrollador Web e Ingeniero de Sistemas con +3 años de experiencia en soporte IT y desarrollo de software.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🌟 Vista Previa
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+![Portfolio Preview](./public/portfolio.webp)
 
-## 🚀 Project Structure
+**🔗 [Ver Portfolio en Vivo](https://portfolio-dev-plum.vercel.app/)**
+
+## 📋 Sobre el Proyecto
+
+Este portfolio personal está construido con tecnologías modernas para mostrar mis proyectos, habilidades y experiencia profesional. Diseñado con un enfoque en la performance, accesibilidad y experiencia de usuario.
+
+### ✨ Características Principales
+
+- 🎨 **Diseño Moderno**: Interfaz limpia y profesional
+- 🌙 **Modo Oscuro/Claro**: Toggle automático según preferencias del sistema
+- 📱 **Totalmente Responsivo**: Optimizado para todos los dispositivos
+- ⚡ **Alto Rendimiento**: Construido con Astro para máxima velocidad
+- 🎯 **SEO Optimizado**: Meta tags y estructura semántica
+- ♿ **Accesible**: Cumple con estándares de accesibilidad web
+- 🎭 **Animaciones Suaves**: Transiciones y efectos visuales elegantes
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- **[Astro](https://astro.build)** - Framework principal
+- **[Tailwind CSS](https://tailwindcss.com)** - Framework de CSS
+- **[TypeScript](https://www.typescriptlang.org)** - Tipado estático
+- **[Swiper](https://swiperjs.com)** - Carrusel de tecnologías
+
+### Herramientas y Deployment
+- **[Vercel](https://vercel.com)** - Hosting y deployment
+- **[Git](https://git-scm.com)** - Control de versiones
+- **[VS Code](https://code.visualstudio.com)** - Editor de código
+
+## 📁 Estructura del Proyecto
 
 Inside of your Astro project, you'll see the following folders and files:
 

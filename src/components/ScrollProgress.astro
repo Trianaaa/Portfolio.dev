@@ -1,0 +1,63 @@
+---
+// ScrollProgress.astro - Progress bar que muestra la posición del scroll con fondo transparente
+---
+
+<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
+  <div 
+    id="progress-bar" 
+    class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-150 ease-out shadow-lg"
+    style="width: 0%"
+  ></div>
+</div>
+
+<script>
+  function updateScrollProgress() {
+    const scrollProgress = document.getElementById('progress-bar');
+    if (!scrollProgress) return;
+
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+
+    scrollProgress.style.width = `${Math.min(scrollPercentage, 100)}%`;
+  }
+
+  // Update on scroll
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  
+  // Update on resize
+  window.addEventListener('resize', updateScrollProgress, { passive: true });
+  
+  // Initial update
+  updateScrollProgress();
+
+  // Handle view transitions
+  document.addEventListener('astro:page-load', updateScrollProgress);
+</script>
+
+<style>
+  #scroll-progress {
+    /* Fondo completamente transparente */
+    background: transparent;
+  }
+  
+  #progress-bar {
+    box-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.5),
+      0 0 20px rgba(168, 85, 247, 0.3);
+  }
+  
+  /* Smooth animation for progress bar */
+  @media (prefers-reduced-motion: no-preference) {
+    #progress-bar {
+      transition: width 0.1s ease-out;
+    }
+  }
+  
+  /* Hide on print */
+  @media print {
+    #scroll-progress {
+      display: none;
+    }
+  }
+</style>

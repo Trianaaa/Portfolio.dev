@@ -1,0 +1,389 @@
+---
+import htmlIcon from "../components/icons/html.astro";
+import TailwindIcon from "../components/icons/Tailwind.astro";
+import CSSIcon from "../components/icons/CSS.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
+import JavaScriptIcon from "../components/icons/JavaScript.astro";
+import SocialPill from "../components/SocialPill.astro";
+import GitHubIcon from "../components/icons/GitHub.astro";
+import LinkIcon from "../components/icons/Link.astro";
+import ReactIcon from "../components/icons/React.astro";
+import NextIcon from "../components/icons/Next.astro";
+import NestjsIcon from "../components/icons/Nestjs.astro";
+import TurboIcon from "../components/icons/TurboRepo.astro";
+import MongoIcon from "../components/icons/Mongodb.astro";
+import PrismaIcon from "../components/icons/Prisma.astro";
+import NextAuthIcon from "../components/icons/NextAuth.astro";
+import VercelIcon from "../components/icons/Vercel.astro";
+import NetlifyIcon from "../components/icons/Netlify.astro";
+import RenderIcon from "../components/icons/Render.astro";
+
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-[#ef6c00] text-white font-semibold",
+    icon: htmlIcon,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white font-semibold",
+    icon: TailwindIcon,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-[#264de4] text-white font-semibold",
+    icon: CSSIcon,
+  },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#ef6c00] text-white font-semibold",
+    icon: AstroIcon,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-[#fdd835] text-black font-semibold",
+    icon: JavaScriptIcon,
+  },
+  REACT: {
+    name: "React.js",
+    class: "bg-[#00DBFF] text-black font-semibold",
+    icon: ReactIcon,
+  },
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white font-semibold",
+    icon: NextIcon,
+  },
+  NESTJS: {
+    name: "Nest.js",
+    class: "bg-black text-white font-semibold",
+    icon: NestjsIcon,
+  },
+  TURBO: {
+    name: "TurboRepo",
+    class: "bg-white text-black font-semibold",
+    icon: TurboIcon,
+  },
+  MONGO: {
+    name: "MongoDB",
+    class: "bg-[#6aa50f] text-black font-semibold",
+    icon: MongoIcon,
+  },
+  PRISMA: {
+    name: "Prisma",
+    class: "bg-white text-black font-semibold",
+    icon: PrismaIcon,
+  },
+  NEXTAUTH: {
+    name: "NextAuth.js",
+    class: "bg-[#af69cd] text-white font-semibold",
+    icon: NextAuthIcon,
+  },
+};
+
+const DEPLOY_TAGS = {
+  VERCEL: {
+    name: "Vercel",
+    class: "bg-[#aaaaaa] text-black font-semibold",
+    icon: VercelIcon,
+  },
+  NETLIFY: {
+    name: "Netlify",
+    class: "bg-green-600 text-white font-semibold",
+    icon: NetlifyIcon,
+  },
+  RENDER: {
+    name: "Render",
+    class: "bg-white text-black font-semibold",
+    icon: RenderIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Tesla Landing",
+    description: "A modern landing page inspired by Tesla's official website, built with Astro, Tailwind, and JavaScript.",
+    linkpage: "https://landing-tesla-one.vercel.app",
+    github: "https://github.com/Trianaaa/landing-_Tesla",
+    image: "teslapage.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.ASTRO, TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    deploy: DEPLOY_TAGS.VERCEL,
+    category: "Frontend",
+    featured: true,
+  },
+  {
+    title: "API Dashboard",
+    description: "An interactive dashboard that fetches data from an API, built with Astro and Tailwind to visualize key metrics.",
+    linkpage: "https://dashboard-api-pablo-triana.vercel.app/",
+    github: "https://github.com/Trianaaa/dashboard_api_pablo_triana",
+    image: "panel.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    deploy: DEPLOY_TAGS.VERCEL,
+    category: "Frontend",
+    featured: false,
+  },
+  {
+    title: "User Management",
+    description: "This app allows you to view, add, and delete users using an external API. Only active users are displayed and a friendly UI is provided to manage their data.",
+    linkpage: "https://prueba-gules-chi.vercel.app/",
+    github: "https://github.com/Trianaaa/prueba/tree/Prueba_ingco",
+    image: "gestion.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT],
+    deploy: DEPLOY_TAGS.VERCEL,
+    category: "Frontend",
+    featured: false,
+  },
+  {
+    title: "Employees and Products",
+    description: "This app allows managing employees and products of the company. It displays a list of employees and their associated products stored in a MongoDB database deployed on Render.",
+    linkpage: "https://login-client-mep6.vercel.app/",
+    github: "https://github.com/Trianaaa/login",
+    image: "employee.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT, TAGS.NESTJS, TAGS.TURBO, TAGS.MONGO],
+    deploy: [DEPLOY_TAGS.VERCEL, DEPLOY_TAGS.RENDER],
+    category: "Fullstack",
+    featured: true,
+  },
+  {
+    title: "Tabogo Live",
+    description: "Tabogo Live is a fullstack web application that allows users to explore bars and purchase tickets for events in Bogotá. The platform offers an intuitive experience to discover venues, view event details, and manage online purchases.",
+    linkpage: "https://tabogo.vercel.app/",
+    github: "https://github.com/fabianra5789/NightlifeHub",
+    image: "tabogo.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT, TAGS.MONGO, TAGS.PRISMA, TAGS.NEXTAUTH],
+    deploy: [DEPLOY_TAGS.VERCEL],
+    category: "Fullstack",
+    featured: true,
+  },
+  {
+    title: "Personal Portfolio",
+    description: "This is my personal portfolio website built with Astro and styled with Tailwind CSS. It showcases my projects, skills, and experience in a clean and responsive layout, allowing visitors to learn more about me and explore my work.",
+    linkpage: "https://portfolio-dev-plum.vercel.app/",
+    github: "https://github.com/Trianaaa/Portfolio.dev",
+    image: "portfolio.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.ASTRO],
+    deploy: [DEPLOY_TAGS.VERCEL],
+    category: "Frontend",
+    featured: false,
+  },
+  {
+    title: "TicTacToe game",
+    description: "A classic TicTacToe game built with Astro and Tailwind CSS. Challenge yourself or a friend to see who can get three in a row first! The game features a simple, responsive design and keeps track of the current player, making it fun and easy to play on any device.",
+    linkpage: "https://tictactoe-six-rho.vercel.app/",
+    github: "https://github.com/Trianaaa/TicTacToe-game",
+    image: "tictac.png",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.TAILWIND, TAGS.ASTRO],
+    deploy: [DEPLOY_TAGS.VERCEL],
+    category: "Frontend",
+    featured: false,
+  },
+];
+
+const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
+---
+
+<div class="projects-container">
+  <!-- Filter Buttons con el mismo estilo que SocialPill -->
+  <div class="filter-buttons flex flex-wrap justify-center gap-3 mb-8">
+    {categories.map(category => (
+      <button 
+        class="filter-btn bg-white/5 border dark:border-white/10 border-gray-400 rounded-full flex justify-center items-center gap-x-2 py-2 px-4 text-base text-black/70 dark:text-white/50 transition hover:scale-110 hover:bg-white/10 font-medium"
+        data-filter={category.toLowerCase()}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+
+  <!-- Projects Grid -->
+  <section id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {PROJECTS.map(({ title, description, tags, image, linkpage, github, deploy, category, featured }) => (
+      <article 
+        class="project-card bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md transition-all duration-500 border border-gray-300 dark:border-white/10 hover:shadow-2xl hover:scale-[1.02]"
+        data-category={category.toLowerCase()}
+        data-featured={featured}
+      >
+        {featured && (
+          <div class="featured-badge absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+            ⭐ Featured
+          </div>
+        )}
+        
+        <div class="relative overflow-hidden rounded-xl mb-4 group">
+          <img
+            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            src={image}
+            alt={`Project screenshot: ${title}`}
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-[#00bfa5] mb-2 hover:text-[#00acc1] transition-colors">
+          {title}
+        </h3>
+        
+        <p class="text-base text-gray-800 dark:text-white/90 mb-4 line-clamp-3">
+          {description}
+        </p>
+
+        <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
+          Technologies used:
+        </div>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <li>
+              <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs transition-transform hover:scale-105 ${tag.class}`}>
+                <tag.icon class="w-4 h-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {deploy && (
+          <div class="mb-4">
+            <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
+              Deployed with:
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
+                <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${d.class}`}>
+                  <d.icon class="w-4 h-4" />
+                  {d.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="flex gap-4 mt-auto">
+          {linkpage && (
+            <SocialPill
+              href={linkpage}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:scale-105 transition-transform"
+            >
+              <LinkIcon class="size-5 md:size-6" />
+              View Project
+            </SocialPill>
+          )}
+          {github && (
+            <SocialPill
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:scale-105 transition-transform"
+            >
+              <GitHubIcon class="size-5 md:size-6" />
+              Code
+            </SocialPill>
+          )}
+        </div>
+      </article>
+    ))}
+  </section>
+</div>
+
+<style>
+  /* Estilo activo para los botones de filtro */
+  .filter-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border-color: #667eea !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transform: scale(1.05);
+  }
+  
+  .project-card {
+    position: relative;
+  }
+  
+  .featured-badge {
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .project-card.hidden {
+    display: none;
+  }
+  
+  .project-card.show {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mejoras para responsive */
+  @media (max-width: 768px) {
+    .filter-buttons {
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Set initial active state
+    filterButtons[0].classList.add('active');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Filter projects
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const featured = card.getAttribute('data-featured') === 'true';
+          
+          let shouldShow = false;
+          
+          if (filter === 'all') {
+            shouldShow = true;
+          } else if (filter === 'featured') {
+            shouldShow = featured;
+          } else {
+            shouldShow = category === filter;
+          }
+          
+          if (shouldShow) {
+            card.classList.remove('hidden');
+            card.classList.add('show');
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('show');
+          }
+        });
+      });
+    });
+  });
+</script>
