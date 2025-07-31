@@ -1,17 +1,18 @@
 ---
-// Componente de formulario de contacto mejorado
+// Enhanced contact form component
 import MailIcon from "./icons/Mail.astro";
 ---
 
 <section id="contact" class="py-16 px-4">
   <div class="max-w-2xl mx-auto">
-    <!-- H2 alineado a la izquierda como el resto de la página -->
-    <h2 class="text-3xl font-bold mb-8 flex items-center gap-x-3">
-      <MailIcon class="size-7" />
-      Contacto
-    </h2>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Let's discuss your next project or collaboration opportunity
+      </p>
+    </div>
     
-    <!-- Formulario mejorado para light/dark mode -->
+    <!-- Enhanced form for light/dark mode -->
     <form 
       name="contact" 
       method="POST" 
@@ -22,70 +23,99 @@ import MailIcon from "./icons/Mail.astro";
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label for="name" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Nombre</label>
+          <label for="name" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Full Name *
+          </label>
           <input 
             type="text" 
             id="name" 
             name="name" 
             required 
+            autocomplete="name"
             class="w-full px-4 py-3 rounded-lg bg-white/60 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-            placeholder="Tu nombre completo"
+            placeholder="Your full name"
           />
+          <span class="error-message text-red-500 text-sm hidden"></span>
         </div>
         
         <div>
-          <label for="email" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+          <label for="email" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Email Address *
+          </label>
           <input 
             type="email" 
             id="email" 
             name="email" 
             required 
+            autocomplete="email"
             class="w-full px-4 py-3 rounded-lg bg-white/60 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-            placeholder="tu@email.com"
+            placeholder="your@email.com"
           />
+          <span class="error-message text-red-500 text-sm hidden"></span>
         </div>
       </div>
       
       <div>
-        <label for="subject" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Asunto</label>
+        <label for="subject" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          Subject *
+        </label>
         <input 
           type="text" 
           id="subject" 
           name="subject" 
           required 
           class="w-full px-4 py-3 rounded-lg bg-white/60 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-          placeholder="¿En qué puedo ayudarte?"
+          placeholder="How can I help you?"
         />
+        <span class="error-message text-red-500 text-sm hidden"></span>
       </div>
       
       <div>
-        <label for="message" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Mensaje</label>
+        <label for="message" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          Message *
+        </label>
         <textarea 
           id="message" 
           name="message" 
           rows="5" 
           required 
           class="w-full px-4 py-3 rounded-lg bg-white/60 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-          placeholder="Cuéntame sobre tu proyecto o idea..."
+          placeholder="Tell me about your project or idea..."
         ></textarea>
+        <span class="error-message text-red-500 text-sm hidden"></span>
       </div>
       
-      <!-- Botón con el mismo estilo que SocialPill -->
+      <!-- Success/Error messages -->
+      <div id="form-messages" class="hidden">
+        <div id="success-message" class="hidden p-4 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
+          <p class="text-green-700 dark:text-green-300 font-medium">
+            ✓ Message sent successfully! I'll get back to you soon.
+          </p>
+        </div>
+        <div id="error-message" class="hidden p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg">
+          <p class="text-red-700 dark:text-red-300 font-medium">
+            ✗ Something went wrong. Please try again or contact me directly.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Button with same style as SocialPill -->
       <button 
         type="submit" 
-        class="w-full bg-white/5 border dark:border-white/10 border-gray-400 rounded-full flex justify-center items-center gap-x-2 py-3 px-6 text-base text-black/70 dark:text-white/50 transition hover:scale-105 hover:bg-white/10 font-medium"
+        id="submit-button"
+        class="w-full bg-white/5 border dark:border-white/10 border-gray-400 rounded-full flex justify-center items-center gap-x-2 py-3 px-6 text-base text-black/70 dark:text-white/50 transition hover:scale-105 hover:bg-white/10 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
         </svg>
-        Enviar Mensaje
+        Send Message
       </button>
     </form>
     
     <div class="mt-8 text-center">
       <p class="text-gray-600 dark:text-gray-400">
-        O contáctame directamente en: 
-        <a href="mailto:pabloandrestrianam@outlook.com" class="text-blue-500 hover:text-blue-600 font-medium">
+        Or contact me directly at: 
+        <a href="mailto:pabloandrestrianam@outlook.com" class="text-blue-500 hover:text-blue-600 font-medium transition-colors">
           pabloandrestrianam@outlook.com
         </a>
       </p>
@@ -95,27 +125,157 @@ import MailIcon from "./icons/Mail.astro";
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form[name="contact"]');
+    const form = document.querySelector('form[name="contact"]') as HTMLFormElement;
     
     if (form) {
+      // Form validation
+      const validateField = (field: HTMLInputElement | HTMLTextAreaElement): boolean => {
+        const errorSpan = field.parentElement?.querySelector('.error-message') as HTMLElement;
+        let isValid = true;
+        let errorMessage = '';
+
+        // Reset previous error state
+        field.classList.remove('border-red-500');
+        if (errorSpan) {
+          errorSpan.classList.add('hidden');
+          errorSpan.textContent = '';
+        }
+
+        // Check if field is empty
+        if (!field.value.trim()) {
+          isValid = false;
+          errorMessage = `${field.labels?.[0]?.textContent?.replace('*', '').trim()} is required`;
+        }
+        // Email validation
+        else if (field.type === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address';
+          }
+        }
+        // Name validation (minimum 2 characters)
+        else if (field.name === 'name' && field.value.trim().length < 2) {
+          isValid = false;
+          errorMessage = 'Name must be at least 2 characters long';
+        }
+        // Message validation (minimum 10 characters)
+        else if (field.name === 'message' && field.value.trim().length < 10) {
+          isValid = false;
+          errorMessage = 'Message must be at least 10 characters long';
+        }
+
+        if (!isValid) {
+          field.classList.add('border-red-500');
+          if (errorSpan) {
+            errorSpan.textContent = errorMessage;
+            errorSpan.classList.remove('hidden');
+          }
+        }
+
+        return isValid;
+      };
+
+      // Real-time validation
+      const fields = form.querySelectorAll('input[required], textarea[required]') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+      fields.forEach(field => {
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => {
+          // Clear error state when user starts typing
+          if (field.classList.contains('border-red-500')) {
+            field.classList.remove('border-red-500');
+            const errorSpan = field.parentElement?.querySelector('.error-message') as HTMLElement;
+            if (errorSpan) {
+              errorSpan.classList.add('hidden');
+            }
+          }
+        });
+      });
+
       form.addEventListener('submit', function(e) {
-        const button = form.querySelector('button[type="submit"]');
+        e.preventDefault();
+        
+        // Validate all fields
+        let isFormValid = true;
+        fields.forEach(field => {
+          if (!validateField(field)) {
+            isFormValid = false;
+          }
+        });
+
+        if (!isFormValid) {
+          // Scroll to first error
+          const firstError = form.querySelector('.border-red-500') as HTMLElement;
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+          return;
+        }
+
+        const button = form.querySelector('#submit-button') as HTMLButtonElement;
         const originalText = button.innerHTML;
         
+        // Show loading state
         button.innerHTML = `
           <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          Enviando...
+          Sending...
         `;
         button.disabled = true;
+
+        // Submit form data
+        const formData = new FormData(form);
         
-        // Restaurar el botón después de 3 segundos
-        setTimeout(() => {
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData as any).toString()
+        })
+        .then(() => {
+          // Show success message
+          const messagesContainer = document.getElementById('form-messages');
+          const successMessage = document.getElementById('success-message');
+          if (messagesContainer && successMessage) {
+            messagesContainer.classList.remove('hidden');
+            successMessage.classList.remove('hidden');
+          }
+          
+          // Reset form
+          form.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            if (messagesContainer && successMessage) {
+              successMessage.classList.add('hidden');
+              messagesContainer.classList.add('hidden');
+            }
+          }, 5000);
+        })
+        .catch(() => {
+          // Show error message
+          const messagesContainer = document.getElementById('form-messages');
+          const errorMessage = document.getElementById('error-message');
+          if (messagesContainer && errorMessage) {
+            messagesContainer.classList.remove('hidden');
+            errorMessage.classList.remove('hidden');
+          }
+          
+          // Hide error message after 5 seconds
+          setTimeout(() => {
+            if (messagesContainer && errorMessage) {
+              errorMessage.classList.add('hidden');
+              messagesContainer.classList.add('hidden');
+            }
+          }, 5000);
+        })
+        .finally(() => {
+          // Restore button
           button.innerHTML = originalText;
           button.disabled = false;
-        }, 3000);
+        });
       });
     }
   });
