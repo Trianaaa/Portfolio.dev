@@ -1,82 +1,120 @@
 ---
 const technologies = [
-  { name: "HTML", icon: "/tech/html.svg" },
-  { name: "CSS", icon: "/tech/css.svg" },
-  { name: "JavaScript", icon: "/tech/javascript.svg" },
-  { name: "TypeScript", icon: "/tech/typescript.svg" },
-  { name: "React", icon: "/tech/react.svg" },
-  { name: "Node.js", icon: "/tech/node.svg" },
-  { name: "Python", icon: "/tech/python.svg" },
-  { name: "Git", icon: "/tech/git.svg" },
-  { name: "MongoDB", icon: "/tech/mongodb.svg" },
-  { name: "PostgreSQL", icon: "/tech/postgresql.svg" },
-  { name: "Docker", icon: "/tech/docker.svg" },
-  { name: "Kubernetes", icon: "/tech/kubernetes.svg" },
-  { name: "Next.js", icon: "/tech/nextjs.svg" },
-  { name: "Astro", icon: "/tech/astro.svg" },
-  { name: "Tailwind CSS", icon: "/tech/tailwindcss.svg" },
-  { name: "Bootstrap", icon: "/tech/bootstrap.svg" },
-  { name: "Vue.js", icon: "/tech/vue.svg" },
-  { name: "Angular", icon: "/tech/angular.svg" },
-  { name: "NestJS", icon: "/tech/nestjs.svg" },
+  { name: "HTML", icon: "/tech/html.svg", category: "Frontend" },
+  { name: "CSS", icon: "/tech/css.svg", category: "Frontend" },
+  { name: "JavaScript", icon: "/tech/javascript.svg", category: "Frontend" },
+  { name: "TypeScript", icon: "/tech/typescript.svg", category: "Frontend" },
+  { name: "React", icon: "/tech/react.svg", category: "Frontend" },
+  { name: "Node.js", icon: "/tech/node.svg", category: "Backend" },
+  { name: "Python", icon: "/tech/python.svg", category: "Backend" },
+  { name: "Git", icon: "/tech/git.svg", category: "Tools" },
+  { name: "MongoDB", icon: "/tech/mongodb.svg", category: "Database" },
+  { name: "PostgreSQL", icon: "/tech/postgresql.svg", category: "Database" },
+  { name: "Docker", icon: "/tech/docker.svg", category: "DevOps" },
+  { name: "Kubernetes", icon: "/tech/kubernetes.svg", category: "DevOps" },
+  { name: "Next.js", icon: "/tech/nextjs.svg", category: "Frontend" },
+  { name: "Astro", icon: "/tech/astro.svg", category: "Frontend" },
+  { name: "Tailwind CSS", icon: "/tech/tailwindcss.svg", category: "Frontend" },
+  { name: "Bootstrap", icon: "/tech/bootstrap.svg", category: "Frontend" },
+  { name: "Vue.js", icon: "/tech/vue.svg", category: "Frontend" },
+  { name: "Angular", icon: "/tech/angular.svg", category: "Frontend" },
+  { name: "NestJS", icon: "/tech/nestjs.svg", category: "Backend" },
 ];
 
 // Triplicamos para un carrusel más fluido
 const tripled = [...technologies, ...technologies, ...technologies];
 ---
 
-<div class="relative w-full overflow-hidden py-8">
+<section class="relative w-full overflow-hidden py-16">
+
   <!-- Gradientes para efecto fade -->
-  
-  
+  <div class="absolute left-0 top-0 bottom-0 w-20  from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-20  from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+
   <!-- Carrusel principal -->
-  <div class="flex gap-6 animate-marquee-smooth">
-    {tripled.map((tech, index) => (
-      <div
-        key={index}
-        class="flex-shrink-0 group"
-      >
-        <div class="tech-card flex flex-col items-center justify-center min-w-[120px] p-4 rounded-xl border border-gray-300/30 dark:border-white/10 backdrop-blur-lg bg-white/20 dark:bg-white/5 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div class="relative overflow-hidden rounded-lg p-2 bg-white/50 dark:bg-gray-800/50 mb-3">
-            <img
-              src={tech.icon}
-              alt={`Ícono de ${tech.name}`}
-              class="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
-              loading="lazy"
-            />
+  <div class="relative mb-12">
+    <div class="flex gap-8 animate-marquee-smooth">
+      {tripled.map((tech, index) => (
+        <div
+          key={index}
+          class="flex-shrink-0 group cursor-pointer"
+        >
+          <div class="tech-card relative flex flex-col items-center justify-center w-32 h-40 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            
+            <!-- Category tooltip -->
+            <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 px-3 py-1 text-xs font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+              {tech.category}
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-white"></div>
+            </div>
+            
+            <!-- Glow effect on hover -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            
+            <!-- Icon container -->
+            <div class="relative mb-3 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
+              <img
+                src={tech.icon}
+                alt={`${tech.name} icon`}
+                class="w-12 h-12 object-contain"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Tech name -->
+            <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center px-2">
+              {tech.name}
+            </span>
+            
+            <!-- Bottom accent line -->
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl"></div>
           </div>
-          <span class="text-sm font-medium text-gray-800 dark:text-gray-100 text-center">
-            {tech.name}
-          </span>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
   
   <!-- Carrusel secundario (dirección opuesta) -->
-  <div class="flex gap-6 animate-marquee-reverse mt-6">
-    {tripled.slice().reverse().map((tech, index) => (
-      <div
-        key={index}
-        class="flex-shrink-0 group"
-      >
-        <div class="tech-card flex flex-col items-center justify-center min-w-[120px] p-4 rounded-xl border border-gray-300/30 dark:border-white/10 backdrop-blur-lg bg-white/20 dark:bg-white/5 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div class="relative overflow-hidden rounded-lg p-2 bg-white/50 dark:bg-gray-800/50 mb-3">
-            <img
-              src={tech.icon}
-              alt={`Ícono de ${tech.name}`}
-              class="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
-              loading="lazy"
-            />
+  <div class="relative">
+    <div class="flex gap-8 animate-marquee-reverse">
+      {tripled.slice().reverse().map((tech, index) => (
+        <div
+          key={index}
+          class="flex-shrink-0 group cursor-pointer"
+        >
+          <div class="tech-card relative flex flex-col items-center justify-center w-32 h-40 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            
+            <!-- Category tooltip -->
+            <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 px-3 py-1 text-xs font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+              {tech.category}
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-white"></div>
+            </div>
+            
+            <!-- Glow effect on hover -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            
+            <!-- Icon container -->
+            <div class="relative mb-3 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
+              <img
+                src={tech.icon}
+                alt={`${tech.name} icon`}
+                class="w-12 h-12 object-contain"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Tech name -->
+            <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center px-2">
+              {tech.name}
+            </span>
+            
+            <!-- Bottom accent line -->
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl"></div>
           </div>
-          <span class="text-sm font-medium text-gray-800 dark:text-gray-100 text-center">
-            {tech.name}
-          </span>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
-</div>
+</section>
 
 <style>
   @keyframes marquee-smooth {
@@ -98,55 +136,61 @@ const tripled = [...technologies, ...technologies, ...technologies];
   }
 
   .animate-marquee-smooth {
-    animation: marquee-smooth 40s linear infinite;
+    animation: marquee-smooth 60s linear infinite;
     display: flex;
     will-change: transform;
   }
 
   .animate-marquee-reverse {
-    animation: marquee-reverse 35s linear infinite;
+    animation: marquee-reverse 55s linear infinite;
     display: flex;
     will-change: transform;
   }
 
   .tech-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-    will-change: transform;
   }
 
   .tech-card:hover {
-    transform: translateY(-8px) rotateY(5deg);
-    box-shadow: 
-      0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-8px);
   }
 
-  /* Pausa la animación al hacer hover */
+  /* Pausa la animación al hacer hover en el contenedor */
   .animate-marquee-smooth:hover,
   .animate-marquee-reverse:hover {
     animation-play-state: paused;
   }
 
-  /* Mejoras para modo oscuro */
-  @media (prefers-color-scheme: dark) {
-    .tech-card:hover {
-      box-shadow: 
-        0 20px 25px -5px rgba(0, 0, 0, 0.3),
-        0 10px 10px -5px rgba(0, 0, 0, 0.2);
-    }
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
     .tech-card {
-      min-width: 100px;
-      padding: 0.75rem;
+      width: 7rem;
+      height: 9rem;
     }
     
     .tech-card img {
-      height: 2.5rem;
       width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .animate-marquee-smooth {
+      animation-duration: 40s;
+    }
+
+    .animate-marquee-reverse {
+      animation-duration: 35s;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tech-card {
+      width: 6rem;
+      height: 8rem;
+    }
+    
+    .tech-card img {
+      width: 2rem;
+      height: 2rem;
     }
   }
 </style>
