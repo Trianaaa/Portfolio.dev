@@ -3,12 +3,22 @@ import ExperienceItems from "./ExperiencieItems.astro";
 
 const EXPERIENCIE = [
   {
-    date: "March/2024 - June/2025",
+    date: "September/2025 - Current",
+    title: "Junior Manager",
+    company: "Movizzon",
+    description:
+      "Support Engineer 24/7 at Movizzon, I am responsible for providing software support to banking applications and ensuring the continuity of digital services. I perform tasks related to the analysis and optimization of dashboards in Tableau to improve the visibility of key metrics, as well as interpreting and executing queries in X-Path, JavaScript, and SQL (Oracle) for incident diagnosis and resolution. I also implement solutions in web environments and mobile applications for iOS and Android, leveraging my knowledge of Linux and Windows operating systems.",
+    link: "https://movizzon.com/",
+    current: true
+  },
+  {
+    date: "March/2025 - June/2025",
     title: "Support Engineer",
     company: "CNA Sistemas & Soluciones",
     description:
       "Responsible for providing on-site and remote technical support to users across Latin America, assisting in the resolution of hardware, software, and connectivity issues. In charge of managing and monitoring assigned projects related to IT infrastructure.",
-    link: "https://www.cnasistemas.com"
+    link: "https://www.cnasistemas.com",
+    current: false
   },
   {
     date: "February/2024 - March/2025",
@@ -16,33 +26,76 @@ const EXPERIENCIE = [
     company: "Tecnología Informática TECINF SAS",
     description:
       "Provided on-site and remote technical support, addressing user requirements across Latin America. Assisted in solving issues related to hardware, software, connectivity, and office tools, as well as in the management of assigned infrastructure projects.",
-    link: "https://www.tecinf.net/"
+    link: "https://www.tecinf.net/",
+    current: false
   },
   {
     date: "December/2023 - January/2024",
     title: "Technology Assistant",
     company: "Merani Proyectos",
     description:
-      "Supported the management and creation of visual and didactic content for courses offered on the foundation’s learning platform, aimed at government-led academic projects.",
-    link: "https://albertomerani.org/"
+      "Supported the management and creation of visual and didactic content for courses offered on the foundation's learning platform, aimed at government-led academic projects.",
+    link: "https://albertomerani.org/",
+    current: false
   },
   {
     date: "June/2022 - December/2023",
-    title: "Commercial Assistant - CENASIT S.A.S",
+    title: "Commercial Assistant",
     company: "CENASIT S.A.S",
     description:
       "Provided comprehensive support to the commercial department, including document management, promotion of in-person and virtual courses, supplier management nationwide, participant registration at the training center, portfolio management, and assistance in internal project execution such as implementing a digital participant registration system, optimizing processes by 30%.",
-    link: "https://www.cenasit.com"
+    link: "https://www.cenasit.com",
+    current: false
   }
 ];
 ---
 
-<ol class="relative  ml-3">
-  {
-    EXPERIENCIE.map((experiencie) => (
-      <li class="mb-10 ms-4">
-        <ExperienceItems {...experiencie} />
-      </li>
-    ))
+<div class="relative">
+  <!-- Main timeline container -->
+  <div class="relative">
+    <!-- Vertical timeline line - positioned to align with dot centers -->
+    <div class="absolute left-10 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-blue-500 to-transparent dark:from-cyan-400 dark:via-blue-400 opacity-20"></div>
+    
+    <!-- Experience items -->
+    <ol class="relative space-y-12 pl-20">
+      {
+        EXPERIENCIE.map((experience, index) => (
+          <li 
+            class="relative experience-item"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <ExperienceItems {...experience} />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-</ol>
+  
+  .experience-item {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    ol.pl-20 {
+      padding-left: 4rem;
+    }
+    
+    .absolute.left-10 {
+      left: 1.5rem;
+    }
+  }
+</style>

@@ -5,91 +5,103 @@ interface Props {
   company: string;
   link?: string;
   date: string;
+  current?: boolean;
 }
 
-const { title, description, company, link, date } = Astro.props;
+const { title, description, company, link, date, current = false } = Astro.props;
 ---
 
 <div class="relative group">
-  <!-- Timeline line connector -->
-  <div class="absolute left-6 top-8 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 to-transparent dark:from-cyan-500 dark:to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
-  
-  <!-- Main content card -->
-  <div class="relative pl-16 pb-12">
-    <!-- Enhanced timeline dot -->
-    <div class="absolute left-0 top-2 flex items-center justify-center">
-      <!-- Outer glow ring -->
-      <div class="absolute w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400/30 to-blue-400/30 animate-pulse"></div>
-      <!-- Main dot -->
-      <div class="relative w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 border-2 border-white dark:border-gray-900 shadow-lg group-hover:scale-125 transition-transform duration-300">
-        <!-- Inner highlight -->
-        <div class="absolute inset-1 rounded-full bg-white/30"></div>
-      </div>
+  <!-- Timeline dot with enhanced design - centered on timeline line -->
+  <div class="absolute -left-[3.125rem] top-4 flex items-center justify-center z-10">
+    <!-- Outer animated ring -->
+    <div class={`absolute w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400/40 to-blue-400/40 ${current ? 'animate-ping' : ''} opacity-75`}></div>
+    <!-- Middle glow ring -->
+    <div class="absolute w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/30 group-hover:scale-150 transition-transform duration-300"></div>
+    <!-- Main dot -->
+    <div class={`relative w-5 h-5 rounded-full bg-gradient-to-r ${current ? 'from-emerald-500 to-cyan-500' : 'from-cyan-500 to-blue-500'} border-2 border-white dark:border-gray-900 shadow-xl group-hover:scale-125 transition-all duration-300`}>
+      <!-- Inner highlight -->
+      <div class="absolute inset-1 rounded-full bg-white/40"></div>
+      {current && (
+        <div class="absolute inset-0 rounded-full bg-emerald-400 animate-pulse opacity-75"></div>
+      )}
     </div>
+  </div>
 
-    <!-- Content card -->
-    <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] group-hover:bg-white/90 dark:group-hover:bg-gray-800/90">
-      
-      <!-- Header section -->
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-        <!-- Date badge -->
-        <time class="inline-flex items-center px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-md">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-          {date}
-        </time>
+  <!-- Main content card with glassmorphism -->
+  <div class="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-gray-200/60 dark:border-gray-700/60 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.01] group-hover:border-cyan-400/50 dark:group-hover:border-cyan-500/50 overflow-hidden">
+    
+    <!-- Background gradient effect -->
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    
+    <!-- Content wrapper -->
+    <div class="relative z-10">
+      <!-- Header section with badges -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+        <!-- Date and current badge -->
+        <div class="flex items-center gap-3 flex-wrap">
+          <time class="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-lg">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            {date}
+          </time>
+          {current && (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold rounded-full shadow-md animate-pulse">
+              <span class="w-2 h-2 bg-white rounded-full"></span>
+              Current Position
+            </span>
+          )}
+        </div>
         
         <!-- Company badge -->
         <div class="flex items-center gap-2">
-          <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-          <span class="text-sm font-medium text-gray-600 dark:text-gray-400 px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+          <div class={`w-2.5 h-2.5 ${current ? 'bg-emerald-500' : 'bg-blue-500'} rounded-full ${current ? 'animate-pulse' : ''}`}></div>
+          <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 px-4 py-1.5 bg-gray-100/80 dark:bg-gray-700/80 rounded-full backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
             {company}
           </span>
         </div>
       </div>
 
-      <!-- Title -->
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
-        {title}
-      </h3>
-
-      <!-- Description -->
-      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-pretty">
-        {description}
-      </p>
-
-      <!-- Skills/Technologies tags (if you want to add them later) -->
-      <div class="flex flex-wrap gap-2 mb-4">
-        <!-- You can add technology tags here in the future -->
+      <!-- Title with icon -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 leading-tight">
+          {title}
+        </h3>
       </div>
 
-      <!-- Link section -->
+      <!-- Description with better typography -->
+      <div class="mb-6">
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base text-pretty">
+          {description}
+        </p>
+      </div>
+
+      <!-- Link section with enhanced design -->
       {link && (
-        <div class="pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+        <div class="pt-5 border-t border-gray-200/60 dark:border-gray-700/60">
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+            class="group/link inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            See more about the company
+            <span>Visit Company Website</span>
             <svg
-              class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+              class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform duration-300"
               fill="none"
-              viewBox="0 0 14 10"
-              xmlns="http://www.w3.org/2000/svg"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <path
-                d="M1 5h12M13 5L9 1M13 5L9 9"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </a>
         </div>
@@ -99,24 +111,20 @@ const { title, description, company, link, date } = Astro.props;
 </div>
 
 <style>
-  /* Custom animations for enhanced visual appeal */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Enhanced hover effects */
+  .group:hover {
+    z-index: 1;
   }
   
+  /* Smooth transitions */
   .group {
-    animation: fadeInUp 0.6s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  /* Hover effect for the entire card */
-  .group:hover .absolute.left-6 {
-    opacity: 1;
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .absolute.-left-\[3\.125rem\] {
+      left: -2.5rem;
+    }
   }
 </style>

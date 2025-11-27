@@ -3,30 +3,74 @@ import EducationItem from "./EducationItem.astro";
 
 const EDUCATION = [
   {
-    date: "2025 - Present / Ongoing",
+    date: "2025 - Present",
     title: "English Course",
     institution: "SMART Language Academy - Bogotá, Colombia",
     description:
       "Intensive English course focused on communication skills, listening comprehension, and speaking, with an emphasis on academic and professional contexts.",
     link: "https://smart.edu.co/home/",
+    ongoing: true,
+    type: "Course"
   },
   {
-    date: "2020 - 2025 / Completed",
+    date: "2020 - 2025",
     title: "Systems Engineering",
     institution: "Universidad Central - Bogotá, Colombia",
     description:
       "Program focused on software development, networking, and IT project management. Participated in interdisciplinary projects involving technology and sustainability.",
     link: "https://www.ucentral.edu.co/",
+    ongoing: false,
+    type: "Degree"
   },
 ];
 ---
 
-<ol class="relative ml-3">
-  {
-    EDUCATION.map((item) => (
-      <li class="mb-10 ms-4">
-        <EducationItem {...item} />
-      </li>
-    ))
+<div class="relative">
+  <!-- Main timeline container -->
+  <div class="relative">
+    <!-- Vertical timeline line - positioned to align with dot centers -->
+    <div class="absolute left-10 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent dark:from-indigo-400 dark:via-purple-400 opacity-20"></div>
+    
+    <!-- Education items -->
+    <ol class="relative space-y-12 pl-20">
+      {
+        EDUCATION.map((item, index) => (
+          <li 
+            class="relative education-item"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <EducationItem {...item} />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-</ol>
+  
+  .education-item {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    ol.pl-20 {
+      padding-left: 4rem;
+    }
+    
+    .absolute.left-10 {
+      left: 1.5rem;
+    }
+  }
+</style>
