@@ -183,133 +183,138 @@ const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
 ---
 
 <div class="projects-container">
-  <!-- Filter Buttons con el mismo estilo que SocialPill -->
-  <div class="filter-buttons flex flex-wrap justify-center gap-3 mb-8">
+  <!-- Filter Buttons - Ultra Minimalist with hover effect -->
+  <div class="filter-buttons flex flex-wrap justify-center gap-2 mb-8 md:mb-12 lg:mb-16">
     {categories.map(category => (
       <button 
-        class="filter-btn bg-white/5 border dark:border-white/10 border-gray-400 rounded-full flex justify-center items-center gap-x-2 py-2 px-4 text-base text-black/70 dark:text-white/50 transition hover:scale-110 hover:bg-white/10 font-medium"
+        class="filter-btn relative px-4 md:px-6 py-2 md:py-2.5 text-xs md:text-sm font-medium text-gray-700 dark:text-gray-200 transition-all duration-300 hover:text-blue-500 dark:hover:text-blue-400 hover:scale-105"
         data-filter={category.toLowerCase()}
       >
-        {category}
+        <span class="relative z-10">{category}</span>
+        <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 filter-btn-underline"></span>
       </button>
     ))}
   </div>
 
-  <!-- Projects Grid -->
-  <section id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {PROJECTS.map(({ title, description, tags, image, linkpage, github, deploy, category, featured }) => (
-      <article 
-        class="project-card bg-white/80 dark:bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md transition-all duration-500 border border-gray-300 dark:border-white/10 hover:shadow-2xl hover:scale-[1.02]"
-        data-category={category.toLowerCase()}
-        data-featured={featured}
-      >
-        {featured && (
-          <div class="featured-badge absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-            ⭐ Featured
+  <!-- Projects Grid - Simple Cards -->
+  <section id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    {PROJECTS.map((project, index) => {
+      const { title, image, category, featured, tags, deploy } = project;
+      return (
+        <>
+          <article 
+            class="project-card group relative bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-lg cursor-pointer"
+            data-category={category.toLowerCase()}
+            data-featured={featured}
+            data-project-index={index}
+          >
+            {featured && (
+              <div class="absolute top-3 right-3 z-10">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-md">
+                  ⭐
+                </span>
+              </div>
+            )}
+            
+            <!-- Image Container -->
+            <div class="relative overflow-hidden bg-gray-50 dark:bg-gray-800 aspect-video">
+              <img
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src={image}
+                alt={`${title} project`}
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white font-semibold text-lg">View Details</span>
+              </div>
+            </div>
+
+          <!-- Title -->
+          <div class="p-3 md:p-4">
+            <h3 class="text-base md:text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+              {title}
+            </h3>
+            <p class="text-[10px] md:text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-1">
+              {category}
+            </p>
           </div>
-        )}
-        
-        <div class="relative overflow-hidden rounded-xl mb-4 group">
-          <img
-            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-            src={image}
-            alt={`Project screenshot: ${title}`}
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
+          </article>
 
-        <h3 class="text-2xl font-bold text-[#00bfa5] mb-2 hover:text-[#00acc1] transition-colors">
-          {title}
-        </h3>
-        
-        <p class="text-base text-gray-800 dark:text-white/90 mb-4 line-clamp-3">
-          {description}
-        </p>
-
-        <div class="mb-2 text-sm text-gray-800 dark:text-white/80 font-medium">
-          Technologies used:
-        </div>
-        <ul class="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag) => (
-            <li>
-              <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs transition-transform hover:scale-105 ${tag.class}`}>
-                <tag.icon class="w-4 h-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {deploy && (
-          <div class="mb-4">
-            <span class="text-sm text-gray-800 dark:text-white/80 font-medium block mb-1">
-              Deployed with:
-            </span>
-            <div class="flex flex-wrap gap-2">
-              {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
-                <span class={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${d.class}`}>
-                  <d.icon class="w-4 h-4" />
-                  {d.name}
+          <!-- Hidden template for modal content -->
+          <div class="hidden project-modal-template" data-project-index={index}>
+            <div class="project-image">
+              <img src={image} alt={title} />
+            </div>
+            <div class="project-title">{title}</div>
+            <div class="project-category">{category}</div>
+            <div class="project-description">{project.description}</div>
+            <div class="project-featured">{featured ? 'true' : 'false'}</div>
+            <div class="project-linkpage">{project.linkpage || ''}</div>
+            <div class="project-github">{project.github || ''}</div>
+            <div class="project-tags">
+              {tags.map((tag) => (
+                <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium ${tag.class}`}>
+                  <tag.icon class="w-3.5 h-3.5" />
+                  <span>{tag.name}</span>
                 </span>
               ))}
             </div>
+            {deploy && (
+              <div class="project-deploy">
+                {(Array.isArray(deploy) ? deploy : [deploy]).map((d) => (
+                  <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium ${d.class}`}>
+                    <d.icon class="w-3.5 h-3.5" />
+                    <span>{d.name}</span>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-
-        <div class="flex gap-4 mt-auto">
-          {linkpage && (
-            <SocialPill
-              href={linkpage}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:scale-105 transition-transform"
-            >
-              <LinkIcon class="size-5 md:size-6" />
-              View Project
-            </SocialPill>
-          )}
-          {github && (
-            <SocialPill
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:scale-105 transition-transform"
-            >
-              <GitHubIcon class="size-5 md:size-6" />
-              Code
-            </SocialPill>
-          )}
-        </div>
-      </article>
-    ))}
+        </>
+      );
+    })}
   </section>
+
+  <!-- Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 md:p-4 bg-black/60 backdrop-blur-sm">
+    <div class="modal-content relative bg-white dark:bg-gray-900 rounded-xl md:rounded-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-y-auto shadow-2xl mx-2">
+      <!-- Close Button -->
+      <button 
+        id="close-modal"
+        class="absolute top-3 right-3 md:top-4 md:right-4 z-10 p-1.5 md:p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-colors"
+        aria-label="Close modal"
+      >
+        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Content will be injected here -->
+      <div id="modal-body" class="p-4 md:p-6 lg:p-8">
+        <!-- Content will be dynamically inserted -->
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-  /* Estilo activo para los botones de filtro */
+  /* Active filter button - minimalist underline */
   .filter-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    color: white !important;
-    border-color: #667eea !important;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    transform: scale(1.05);
+    color: rgb(59 130 246) !important;
+  }
+  
+  .dark .filter-btn.active {
+    color: rgb(96 165 250) !important;
+  }
+  
+  .filter-btn.active .filter-btn-underline {
+    transform: scale-x(1);
   }
   
   .project-card {
     position: relative;
-  }
-  
-  .featured-badge {
-    position: absolute;
-    z-index: 10;
-  }
-  
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   
   .project-card.hidden {
@@ -317,13 +322,13 @@ const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
   }
   
   .project-card.show {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.5s ease-out forwards;
   }
   
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -331,10 +336,39 @@ const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
     }
   }
 
-  /* Mejoras para responsive */
+  /* Modal animations */
+  .modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    #projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
   @media (max-width: 768px) {
+    #projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
     .filter-buttons {
-      gap: 0.5rem;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
     }
     
     .filter-btn {
@@ -345,13 +379,118 @@ const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
 </style>
 
 <script>
+  const PROJECTS_DATA = [
+    {
+      title: "Tesla Landing",
+      description: "A modern landing page inspired by Tesla's official website, built with Astro, Tailwind, and JavaScript.",
+      linkpage: "https://landing-tesla-one.vercel.app",
+      github: "https://github.com/Trianaaa/landing-_Tesla",
+      image: "teslapage.webp",
+      tags: ["HTML", "CSS", "ASTRO", "TAILWIND", "JAVASCRIPT"],
+      deploy: ["VERCEL"],
+      category: "Frontend",
+      featured: true,
+    },
+    {
+      title: "API Dashboard",
+      description: "An interactive dashboard that fetches data from an API, built with Astro and Tailwind to visualize key metrics.",
+      linkpage: "https://dashboard-api-pablo-triana.vercel.app/",
+      github: "https://github.com/Trianaaa/dashboard_api_pablo_triana",
+      image: "panel.webp",
+      tags: ["HTML", "CSS", "TAILWIND", "JAVASCRIPT"],
+      deploy: ["VERCEL"],
+      category: "Frontend",
+      featured: false,
+    },
+    {
+      title: "User Management",
+      description: "This app allows you to view, add, and delete users using an external API. Only active users are displayed and a friendly UI is provided to manage their data.",
+      linkpage: "https://prueba-gules-chi.vercel.app/",
+      github: "https://github.com/Trianaaa/prueba/tree/Prueba_ingco",
+      image: "gestion.webp",
+      tags: ["HTML", "CSS", "TAILWIND", "JAVASCRIPT", "REACT", "NEXT"],
+      deploy: ["VERCEL"],
+      category: "Frontend",
+      featured: false,
+    },
+    {
+      title: "Employees and Products",
+      description: "This app allows managing employees and products of the company. It displays a list of employees and their associated products stored in a MongoDB database deployed on Render.",
+      linkpage: "https://login-client-mep6.vercel.app/",
+      github: "https://github.com/Trianaaa/login",
+      image: "employee.webp",
+      tags: ["HTML", "CSS", "TAILWIND", "JAVASCRIPT", "REACT", "NEXT", "NESTJS", "TURBO", "MONGO"],
+      deploy: ["VERCEL", "RENDER"],
+      category: "Fullstack",
+      featured: true,
+    },
+    {
+      title: "Tabogo Live",
+      description: "Tabogo Live is a fullstack web application that allows users to explore bars and purchase tickets for events in Bogotá. The platform offers an intuitive experience to discover venues, view event details, and manage online purchases.",
+      linkpage: "https://tabogo.vercel.app/",
+      github: "https://github.com/fabianra5789/NightlifeHub",
+      image: "tabogo.webp",
+      tags: ["HTML", "CSS", "TAILWIND", "JAVASCRIPT", "REACT", "NEXT", "MONGO", "PRISMA", "NEXTAUTH"],
+      deploy: ["VERCEL"],
+      category: "Fullstack",
+      featured: true,
+    },
+    {
+      title: "Personal Portfolio",
+      description: "This is my personal portfolio website built with Astro and styled with Tailwind CSS. It showcases my projects, skills, and experience in a clean and responsive layout, allowing visitors to learn more about me and explore my work.",
+      linkpage: "https://portfolio-dev-plum.vercel.app/",
+      github: "https://github.com/Trianaaa/Portfolio.dev",
+      image: "portfolio.webp",
+      tags: ["HTML", "CSS", "TAILWIND", "ASTRO"],
+      deploy: ["VERCEL"],
+      category: "Frontend",
+      featured: false,
+    },
+    {
+      title: "TicTacToe game",
+      description: "A classic TicTacToe game built with Astro and Tailwind CSS. Challenge yourself or a friend to see who can get three in a row first! The game features a simple, responsive design and keeps track of the current player, making it fun and easy to play on any device.",
+      linkpage: "https://tictactoe-six-rho.vercel.app/",
+      github: "https://github.com/Trianaaa/TicTacToe-game",
+      image: "tictac.png",
+      tags: ["HTML", "CSS", "TAILWIND", "ASTRO"],
+      deploy: ["VERCEL"],
+      category: "Frontend",
+      featured: false,
+    },
+  ];
+
+  const TAGS_MAP = {
+    HTML: { name: "HTML", class: "bg-[#ef6c00] text-white font-semibold" },
+    TAILWIND: { name: "Tailwind CSS", class: "bg-[#003159] text-white font-semibold" },
+    CSS: { name: "CSS", class: "bg-[#264de4] text-white font-semibold" },
+    ASTRO: { name: "Astro", class: "bg-[#ef6c00] text-white font-semibold" },
+    JAVASCRIPT: { name: "JavaScript", class: "bg-[#fdd835] text-black font-semibold" },
+    REACT: { name: "React.js", class: "bg-[#00DBFF] text-black font-semibold" },
+    NEXT: { name: "Next.js", class: "bg-black text-white font-semibold" },
+    NESTJS: { name: "Nest.js", class: "bg-black text-white font-semibold" },
+    TURBO: { name: "TurboRepo", class: "bg-white text-black font-semibold" },
+    MONGO: { name: "MongoDB", class: "bg-[#6aa50f] text-black font-semibold" },
+    PRISMA: { name: "Prisma", class: "bg-white text-black font-semibold" },
+    NEXTAUTH: { name: "NextAuth.js", class: "bg-[#af69cd] text-white font-semibold" },
+  };
+
+  const DEPLOY_MAP = {
+    VERCEL: { name: "Vercel", class: "bg-[#aaaaaa] text-black font-semibold" },
+    NETLIFY: { name: "Netlify", class: "bg-green-600 text-white font-semibold" },
+    RENDER: { name: "Render", class: "bg-white text-black font-semibold" },
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    const closeModal = document.getElementById('close-modal');
     
     // Set initial active state
     filterButtons[0].classList.add('active');
     
+    // Filter functionality
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         const filter = button.getAttribute('data-filter');
@@ -385,5 +524,138 @@ const categories = ['All', 'Featured', 'Frontend', 'Fullstack'];
         });
       });
     });
+
+    // Open modal on card click
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const indexAttr = card.getAttribute('data-project-index');
+        if (!indexAttr) return;
+        const index = parseInt(indexAttr);
+        openModal(index);
+      });
+    });
+
+    // Close modal
+    closeModal?.addEventListener('click', () => closeModalFunc());
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModalFunc();
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+        closeModalFunc();
+      }
+    });
+
+    function openModal(projectIndex: number) {
+      if (!modal || !modalBody) return;
+
+      const template = document.querySelector(`.project-modal-template[data-project-index="${projectIndex}"]`);
+      if (!template) return;
+
+      const image = template.querySelector('.project-image img')?.getAttribute('src') || '';
+      const title = template.querySelector('.project-title')?.textContent || '';
+      const category = template.querySelector('.project-category')?.textContent || '';
+      const description = template.querySelector('.project-description')?.textContent || '';
+      const featured = template.querySelector('.project-featured')?.textContent === 'true';
+      const linkpage = template.querySelector('.project-linkpage')?.textContent || '';
+      const github = template.querySelector('.project-github')?.textContent || '';
+      
+      // Clone tags and deploy with icons
+      const tagsContainer = template.querySelector('.project-tags');
+      const deployContainer = template.querySelector('.project-deploy');
+      
+      const tagsHTML = tagsContainer ? tagsContainer.innerHTML : '';
+      const deployHTML = deployContainer ? deployContainer.innerHTML : '';
+
+      modalBody.innerHTML = `
+        <div class="space-y-4 md:space-y-6">
+          <!-- Image -->
+          <div class="relative overflow-hidden rounded-lg md:rounded-xl bg-gray-100 dark:bg-gray-800">
+            <img
+              class="w-full h-48 md:h-64 lg:h-80 object-cover"
+              src="${image}"
+              alt="${title}"
+            />
+          </div>
+
+          <!-- Header -->
+          <div class="space-y-2">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+              <div class="flex-1">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">${title}</h2>
+                <p class="text-xs md:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-1 md:mt-2">${category}</p>
+              </div>
+              ${featured ? '<span class="inline-flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 bg-yellow-500 text-white text-[10px] md:text-xs font-bold rounded-full">⭐ Featured</span>' : ''}
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+            ${description}
+          </p>
+
+          <!-- Stack -->
+          <div>
+            <p class="text-xs md:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2 md:mb-3">Stack</p>
+            <div class="flex flex-wrap gap-1.5 md:gap-2">
+              ${tagsHTML}
+            </div>
+          </div>
+
+          <!-- Deploy -->
+          ${deployHTML ? `
+          <div>
+            <p class="text-xs md:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2 md:mb-3">Deploy</p>
+            <div class="flex flex-wrap gap-1.5 md:gap-2">
+              ${deployHTML}
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-2 md:gap-3 pt-3 md:pt-4 border-t border-gray-200 dark:border-gray-800">
+            ${linkpage ? `
+              <a
+                href="${linkpage}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group/btn flex-1 flex items-center justify-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                <span>View Live</span>
+              </a>
+            ` : ''}
+            ${github ? `
+              <a
+                href="${github}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group/btn flex-1 flex items-center justify-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gray-900 dark:bg-gray-800 hover:bg-gray-800 dark:hover:bg-gray-700 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                <span>View Code</span>
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalFunc() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
   });
 </script>

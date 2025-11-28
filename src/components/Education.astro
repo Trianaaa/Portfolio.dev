@@ -23,25 +23,40 @@ const EDUCATION = [
     type: "Degree"
   },
 ];
+
+// Function to extract year from date string
+function getYear(date: string): string {
+  const yearMatch = date.match(/\d{4}/);
+  return yearMatch ? yearMatch[0] : '';
+}
 ---
 
 <div class="relative">
-  <!-- Main timeline container -->
+  <!-- Modern minimal timeline -->
   <div class="relative">
-    <!-- Vertical timeline line - positioned to align with dot centers -->
-    <div class="absolute left-10 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent dark:from-indigo-400 dark:via-purple-400 opacity-20"></div>
+    <!-- Vertical timeline line - minimal design -->
+    <div class="absolute left-8 md:left-12 lg:left-16 top-0 bottom-0 w-px bg-gradient-to-b from-purple-400 via-purple-500 to-transparent dark:from-purple-500 dark:via-purple-400"></div>
     
     <!-- Education items -->
-    <ol class="relative space-y-12 pl-20">
+    <ol class="relative space-y-6 md:space-y-8 pl-12 md:pl-20 lg:pl-24">
       {
-        EDUCATION.map((item, index) => (
-          <li 
-            class="relative education-item"
-            style={`animation-delay: ${index * 0.1}s`}
-          >
-            <EducationItem {...item} />
-          </li>
-        ))
+        EDUCATION.map((item, index) => {
+          const year = getYear(item.date);
+          return (
+            <li 
+              class="relative education-item"
+              style={`animation-delay: ${index * 0.08}s`}
+            >
+              <!-- Year label on timeline -->
+              <div class="absolute -left-10 md:-left-14 lg:-left-18 top-3 md:top-4 flex items-center justify-center z-20">
+                <div class="bg-purple-500 text-white text-[10px] md:text-xs font-bold px-2 md:px-2.5 py-1 md:py-1.5 rounded-md md:rounded-lg shadow-xl whitespace-nowrap border border-purple-400">
+                  {year}
+                </div>
+              </div>
+              <EducationItem {...item} />
+            </li>
+          );
+        })
       }
     </ol>
   </div>
@@ -51,7 +66,7 @@ const EDUCATION = [
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -60,17 +75,6 @@ const EDUCATION = [
   }
   
   .education-item {
-    animation: fadeInUp 0.6s ease-out both;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    ol.pl-20 {
-      padding-left: 4rem;
-    }
-    
-    .absolute.left-10 {
-      left: 1.5rem;
-    }
+    animation: fadeInUp 0.5s ease-out both;
   }
 </style>

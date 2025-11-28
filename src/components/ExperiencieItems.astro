@@ -12,96 +12,60 @@ const { title, description, company, link, date, current = false } = Astro.props
 ---
 
 <div class="relative group">
-  <!-- Timeline dot with enhanced design - centered on timeline line -->
-  <div class="absolute -left-[3.125rem] top-4 flex items-center justify-center z-10">
-    <!-- Outer animated ring -->
-    <div class={`absolute w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400/40 to-blue-400/40 ${current ? 'animate-ping' : ''} opacity-75`}></div>
-    <!-- Middle glow ring -->
-    <div class="absolute w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/30 group-hover:scale-150 transition-transform duration-300"></div>
-    <!-- Main dot -->
-    <div class={`relative w-5 h-5 rounded-full bg-gradient-to-r ${current ? 'from-emerald-500 to-cyan-500' : 'from-cyan-500 to-blue-500'} border-2 border-white dark:border-gray-900 shadow-xl group-hover:scale-125 transition-all duration-300`}>
-      <!-- Inner highlight -->
-      <div class="absolute inset-1 rounded-full bg-white/40"></div>
+  <!-- Minimal timeline dot - aligned with year label -->
+  <div class="absolute -left-3 md:-left-4 lg:-left-6 top-4 md:top-5 flex items-center justify-center z-10">
+    <div class={`relative w-3 h-3 md:w-4 md:h-4 rounded-full ${current ? 'bg-emerald-500' : 'bg-blue-500'} border-2 border-white dark:border-gray-900 shadow-lg transition-all duration-300`}>
       {current && (
-        <div class="absolute inset-0 rounded-full bg-emerald-400 animate-pulse opacity-75"></div>
+        <div class="absolute inset-0 rounded-full bg-emerald-400 animate-pulse"></div>
       )}
     </div>
   </div>
 
-  <!-- Main content card with glassmorphism -->
-  <div class="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-gray-200/60 dark:border-gray-700/60 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.01] group-hover:border-cyan-400/50 dark:group-hover:border-cyan-500/50 overflow-hidden">
+  <!-- Minimal modern card -->
+  <div class="relative bg-white dark:bg-gray-900 rounded-xl p-4 md:p-6 lg:p-8 border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-all duration-300 group-hover:-translate-y-1">
     
-    <!-- Background gradient effect -->
-    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-    
-    <!-- Content wrapper -->
-    <div class="relative z-10">
-      <!-- Header section with badges -->
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
-        <!-- Date and current badge -->
-        <div class="flex items-center gap-3 flex-wrap">
-          <time class="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-lg">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            {date}
-          </time>
-          {current && (
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold rounded-full shadow-md animate-pulse">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              Current Position
-            </span>
-          )}
-        </div>
-        
-        <!-- Company badge -->
-        <div class="flex items-center gap-2">
-          <div class={`w-2.5 h-2.5 ${current ? 'bg-emerald-500' : 'bg-blue-500'} rounded-full ${current ? 'animate-pulse' : ''}`}></div>
-          <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 px-4 py-1.5 bg-gray-100/80 dark:bg-gray-700/80 rounded-full backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
+    <!-- Content -->
+    <div class="space-y-3 md:space-y-4">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 md:gap-3">
+        <div class="space-y-1.5 md:space-y-2">
+          <div class="flex items-center gap-2 md:gap-3 flex-wrap">
+            <time class="text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400">
+              {date}
+            </time>
+            {current && (
+              <span class="inline-flex items-center gap-1 px-2 md:px-2.5 py-0.5 md:py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-[10px] md:text-xs font-semibold rounded-full">
+                <span class="w-1 h-1 md:w-1.5 md:h-1.5 bg-emerald-500 rounded-full"></span>
+                Current
+              </span>
+            )}
+          </div>
+          <h3 class="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
+            {title}
+          </h3>
+          <p class="text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400">
             {company}
-          </span>
+          </p>
         </div>
       </div>
 
-      <!-- Title with icon -->
-      <div class="flex items-start gap-3 mb-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 leading-tight">
-          {title}
-        </h3>
-      </div>
+      <!-- Description -->
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-xs md:text-sm lg:text-base">
+        {description}
+      </p>
 
-      <!-- Description with better typography -->
-      <div class="mb-6">
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base text-pretty">
-          {description}
-        </p>
-      </div>
-
-      <!-- Link section with enhanced design -->
+      <!-- Link -->
       {link && (
-        <div class="pt-5 border-t border-gray-200/60 dark:border-gray-700/60">
+        <div class="pt-2 md:pt-4">
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            class="group/link inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            class="inline-flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span>View Company</span>
+            <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
-            <span>Visit Company Website</span>
-            <svg
-              class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </a>
         </div>
@@ -111,20 +75,8 @@ const { title, description, company, link, date, current = false } = Astro.props
 </div>
 
 <style>
-  /* Enhanced hover effects */
-  .group:hover {
-    z-index: 1;
-  }
-  
-  /* Smooth transitions */
   .group {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .absolute.-left-\[3\.125rem\] {
-      left: -2.5rem;
-    }
+    transition: all 0.3s ease;
   }
 </style>
+
